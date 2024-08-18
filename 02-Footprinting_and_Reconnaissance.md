@@ -291,4 +291,5 @@ searchfy -q "target user name or profile name"
 
 ---
 
-# [Footprinting Countermeasures](obsidian://open?vault=SkyNetDSKT&file=CEH%20v12%20Notes%202024%2F02.1-Footprinting_Countermeasures)
+# [Footprinting Countermeasures](https://github.com/ROGUEDSGNR/EH-C-v12-Notes/blob/main/02.1-Footprinting_Countermeasures.md)
+
