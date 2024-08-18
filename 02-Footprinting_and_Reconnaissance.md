@@ -76,7 +76,7 @@
 ## Footprinting Through Search Engines
 
 - [Google Advanced Search Operators | Google Hacking Database ](https://www.exploit-db.com/google-hacking-database)
-	Not really hacking Google, rather than taking advantage of granular search to find potentially interesting publicly listed exploitable assets.
+	Not really hacking Google (duh!), rather than taking advantage of granular search to find potentially interesting publicly listed exploitable assets.
 
 Objectives
 - Gather information using advanced Google hacking techniques
