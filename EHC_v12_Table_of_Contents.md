@@ -1,0 +1,192 @@
+# Table of Contents
+
+![[Logo-RG-EG-SafeMargin@0.5x.webp]]
+
+- **Module 00: Essential Concepts**
+  - Understand Operating System Concepts
+  - Explore Different Types of File Systems
+  - Master Computer Network Fundamentals
+  - Learn Basic Network Troubleshooting Techniques
+  - Comprehend Virtualization Concepts
+  - Understand Network File Systems (NFS)
+  - Familiarize with Web Markup and Programming Languages
+  - Explore Application Development Frameworks and Vulnerabilities
+  - Summarize Web Components and Database Connectivity
+  - Grasp Information Security Controls
+  - Understand Network Segmentation and Security Solutions
+  - Explore Data Leakage and Data Backup Processes
+  - Learn Risk Management Concepts
+  - Understand Business Continuity and Disaster Recovery
+  - Familiarize with Cyber Threat Intelligence and Threat Modelling
+  - Summarize Penetration Testing Phases
+  - Explore Security Operations and Forensics
+  - Comprehend Software Development Security
+  - Understand Security Governance and Asset Management
+---
+- **Module 01: Introduction to Ethical Hacking**
+  - Information Security Overview
+  - Hacking Methodologies and Frameworks
+  - Hacking Concepts
+  - Ethical Hacking Concepts
+  - Information Security Controls
+  - Information Security Laws and Standards
+---
+- **Module 02: Footprinting and Reconnaissance**
+  - Footprinting Concepts
+  - Footprinting through Search Engines
+  - Footprinting through Web Services
+  - Footprinting through Social Networking Sites
+  - Website Footprinting
+  - Email Footprinting
+  - Whois Footprinting
+  - DNS Footprinting
+  - Network Footprinting
+  - Footprinting through Social Engineering
+  - Footprinting Tools
+  - Footprinting Countermeasures
+---
+- **Module 03: Scanning Networks**
+  - Network Scanning Concepts
+  - Scanning Tools
+  - Host Discovery
+  - Port and Service Discovery
+  - OS Discovery (Banner Grabbing/OS Fingerprinting)
+  - Scanning Beyond IDS and Firewall
+  - Network Scanning Countermeasures
+---
+- **Module 04: Enumeration**
+  - Enumeration Concepts
+  - NetBIOS Enumeration
+  - SNMP Enumeration
+  - LDAP Enumeration
+  - NTP and NFS Enumeration
+  - SMTP and DNS Enumeration
+  - Other Enumeration Techniques
+  - Enumeration Countermeasures
+---
+- **Module 05: Vulnerability Analysis**
+  - Vulnerability Assessment Concepts
+  - Vulnerability Assessment Reports
+---
+- **Module 06: System Hacking**
+  - Gaining Access
+  - Escalating Privileges
+  - Maintaining Access
+  - Clearing Logs
+---
+- **Module 07: Malware Threats**
+  - Malware Concepts
+  - APT Concepts
+  - Trojan Concepts
+  - Virus and Worm Concepts
+  - Fileless Malware Concepts
+  - Malware Analysis
+  - Malware Countermeasures
+  - Anti-Malware Software
+---
+- **Module 08: Sniffing**
+  - Sniffing Concepts
+  - Sniffing Tools
+  - Sniffing Countermeasures
+---
+- **Module 09: Social Engineering**
+  - Social Engineering Concepts
+  - Social Engineering Techniques
+  - Insider Threats
+  - Impersonation on Social Networking Sites
+  - Identity Theft
+  - Social Engineering Countermeasures
+---
+- **Module 10: Denial-of-Service**
+  - DoS/DDoS Concepts
+  - Botnets
+  - DoS/DDoS Attack Techniques
+  - DDoS Case Study
+  - DoS/DDoS Attack Countermeasures
+---
+- **Module 11: Session Hijacking**
+  - Session Hijacking Concepts
+  - Application-Level Session Hijacking
+  - Network-Level Session Hijacking
+  - Session Hijacking Tools
+  - Session Hijacking Countermeasures
+---
+- **Module 12: Evading IDS, Firewalls, and Honeypots**
+  - IDS, IPS, Firewall, and Honeypot Concepts
+  - IDS, IPS, Firewall, and Honeypot Solutions
+  - Evading IDS
+  - Evading Firewalls
+  - Evading NAC and Endpoint Security
+  - IDS/Firewall Evading Tools
+  - Detecting Honeypots
+  - IDS/Firewall Evasion Countermeasures
+---
+- **Module 13: Hacking Web Servers**
+  - Web Server Concepts
+  - Web Server Attacks
+  - Web Server Attack Methodology
+  - Web Server Attack Countermeasures
+  - Patch Management
+---
+- **Module 14: Hacking Web Applications**
+  - Web Application Concepts
+  - Web Application Threats
+  - Web Application Hacking Methodology
+  - Web API, Webhooks, and Web Shell
+  - Web Application Security
+---
+- **Module 15: SQL Injection**
+  - SQL Injection Concepts
+  - Types of SQL Injection
+  - SQL Injection Methodology
+  - SQL Injection Tools
+  - Evasion Techniques
+  - SQL Injection Countermeasures
+---
+- **Module 16: Hacking Wireless Networks**
+  - Wireless Concepts
+  - Wireless Encryption
+  - Wireless Threats
+  - Wireless Hacking Methodology
+  - Wireless Hacking Tools
+  - Bluetooth Hacking
+  - Wireless Attack Countermeasures
+  - Wireless Security Tools
+---
+- **Module 17: Hacking Mobile Platforms**
+  - Mobile Platform Attack Vectors
+  - Hacking Android OS
+  - Hacking iOS
+  - Mobile Device Management
+  - Mobile Security Guidelines and Tools
+---
+- **Module 18: IoT and OT Hacking**
+  - IoT Concepts
+  - IoT Attacks
+  - IoT Hacking Methodology
+  - IoT Attack Countermeasures
+  - OT Concepts
+  - OT Attacks
+  - OT Hacking Methodology
+  - OT Attack Countermeasures
+---
+- **Module 19: Cloud Computing**
+  - Cloud Computing Concepts
+  - Container Technology
+  - Serverless Computing
+  - Cloud Computing Threats
+  - Cloud Hacking
+  - Cloud Security
+---
+- **Module 20: Cryptography**
+  - Cryptography Concepts
+  - Encryption Algorithms
+  - Cryptography Tools
+  - Public Key Infrastructure (PKI)
+  - Email Encryption
+  - Disk Encryption
+  - Cryptanalysis
+  - Cryptography Attack Countermeasures
+---
+
+## Labs

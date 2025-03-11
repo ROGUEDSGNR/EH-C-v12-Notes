@@ -7,8 +7,17 @@
 
 ---
 
-# Info Obtained in Network Scanning 
-###### #Objectives
+## **What We Get From This Exercise**
+Info Obtained in Network Scanning 
+###### #Objectives #ScanningNetworks
+
+- Explain Network Scanning Concepts
+- Use Vanous Network Scanning Tools 
+- Demonstrate Various Scanning Techniques for Host Discovery
+- Demonstrate Various Scanning Techniques for Port and Service Discovery 
+- Demonstrate Various Scanning Techniques for OS Discovery
+- Demonstrate Various Techniques for Scanning Beyond IDS and Firewall
+- Explain Network Scanning Countermeasures
 
 - **Discovering Live Hosts, IP Addresses, and Open Ports**: 
 	Identify live hosts within the network, their IP addresses, and the open ports on these hosts. Using the open ports, the attacker determines the best way to gain access to the system.
@@ -27,6 +36,46 @@
 
 ---
 
+# Table of Contents
+
+1. [Types of Scanning](#types-of-scanning)
+	1. [Port Scanning](#port-scanning)
+	2. [Network Scanning](#network-scanning)
+	3. [Vulnerability Scanning](#vulnerability-scanning)
+2. [TCP Communication Flags](#tcp-communication-flags)
+3. [TCP/IP Communication](#tcpip-communication)
+4. [Phase 1 Host Discovery](#phase-1-host-discovery)
+	1. [Host Discovery Scanning](#host-discovery-scanning)
+	2. [ARP Ping Scan](#arp-ping-scan)
+	3. [UDP Ping Scan](#udp-ping-scan)
+	4. [ICMP Ping Scan](#icmp-ping-scan)
+	5. [TCP Ping Scan](#tcp-ping-scan)
+	6. [IP Protocol Scan](#ip-protocol-scan)
+5. [Phase 2 Port/Service Scanning Techniques](#phase-2-portservice-scanning-techniques)
+	1. [TCP Scanning](#tcp-scanning)
+	2. [UDP Scanning](#udp-scanning)
+	3. [SCTP Scanning](#sctp-scanning)
+	4. [SSDP Scanning](#ssdp-scanning)
+	5. [IPv6 Scanning](#ipv6-scanning)
+6. [Banner Grabbing/OS Discovery](#banner-grabbingos-discovery)
+	1. [Operating System Time To Live and TCP Window Size](#operating-system-time-to-live-and-tcp-window-size)
+7. [Scanning Beyond IDS and Firewall](#scanning-beyond-ids-and-firewall)
+	1. [Packet Fragmentation](#packet-fragmentation)
+	2. [Source Port Manipulation](#source-port-manipulation)
+	3. [Using Maximum Transmission Unit (MTU)](#using-maximum-transmission-unit-mtu)
+	4. [IP Address Decoy](#ip-address-decoy)
+	5. [MAC Address Spoofing](#mac-address-spoofing)
+	6. [Randomizing Host Order](#randomizing-host-order)
+	7. [Sending Bad Checksums](#sending-bad-checksums)
+	8. [Using Proxy Servers](#using-proxy-servers)
+	9. [Anonymizers](#anonymizers)
+8. [Tools](#tools)
+	1. [Nmap](#nmap)
+	2. [Hping3](#hping3)
+	3. [Metasploit](#metasploit)
+9. [Summary](#summary)
+
+---
 # Types of Scanning
 
 - **Port Scanning**:
@@ -49,7 +98,7 @@
 ---
 # TCP Communication Flags
 
-The TCP header contains several flags that control data transmission across a TCP connection. Six TCP control flags manage the connection between hosts and provide instructions to the system. Four of these flags (SYN, ACK, FIN, and RST) are responsible for the establishment, maintenance, and termination of a connection. The remaining two flags (PSH and URG) provide additional instructions to the system. Each flag is 1 bit in size, making the TCP Flags section 6 bits in total. When a flag value is set to "1," that flag is activated.
+> The TCP header contains several flags that control data transmission across a TCP connection. Six TCP control flags manage the connection between hosts and provide instructions to the system. Four of these flags (SYN, ACK, FIN, and RST) are responsible for the establishment, maintenance, and termination of a connection. The remaining two flags (PSH and URG) provide additional instructions to the system. Each flag is 1 bit in size, making the TCP Flags section 6 bits in total. When a flag value is set to "1," that flag is activated.
 
 ![[Pasted image 20240704103804.png]]
 
@@ -57,7 +106,7 @@ The TCP header contains several flags that control data transmission across a TC
 
 SYN --- SYN/ACK --- ACK --- OPEN/FIN/RST
 
-TCP is connection-oriented, meaning it prioritizes establishing a connection before transferring data between applications. This connection establishment is achieved through a three-way handshake.
+> TCP is connection-oriented, meaning it prioritizes establishing a connection before transferring data between applications. This connection establishment is achieved through a three-way handshake.
 
 A TCP session begins using the three-way handshake mechanism:
 - To initiate a TCP connection, the source (10.0.0.X:21) sends a SYN packet to the destination (10.0.0.Y:21).
@@ -70,12 +119,14 @@ A TCP session begins using the three-way handshake mechanism:
 
 # Phase 1 Host Discovery
 
-Scanning involves gathering information about systems that are "alive" and responding on the network. Host discovery is the primary task in the network scanning process. To perform a complete scan and identify open ports and services, it is necessary to check for live systems. Host discovery provides an accurate status of the systems in the network, allowing an attacker to avoid scanning every port on every system within a list of IP addresses to determine if the target host is up. 
+> Scanning involves gathering information about systems that are "alive" and responding on the network. Host discovery is the primary task in the network scanning process. 
+> 
+> To perform a complete scan and identify open ports and services, it is necessary to check for live systems. Host discovery provides an accurate status of the systems in the network, allowing an attacker to avoid scanning every port on every system within a list of IP addresses to determine if the target host is up. 
 
 Host discovery is the first step in network scanning. This section highlights methods for checking for live systems in a network using various ping scan techniques. It also discusses how to perform a ping sweep to detect live hosts/systems, along with various ping sweep tools.
 
 ![[Pasted image 20240704195640.png]]
-## Host Discovery Scanning
+## **Host Discovery Scanning**
 
  -  **ARP Ping Scan**
  -  **UDP Ping Scan**
@@ -111,7 +162,7 @@ Here are some common host discovery techniques:
 
 ---
 
-# Phase 2 Port/Service Scanning Techniques
+# **Phase 2 Port/Service Scanning Techniques**
 
 ![[Pasted image 20240709163816.png]]
 
@@ -186,7 +237,7 @@ Port scanning techniques can be categorized based on the type of protocol used f
 -sV: detects service versions.
 ```
 
-Banner grabbing, or OS fingerprinting, is a method used to determine the OS that is running on a remote target system.
+> Banner grabbing, or OS fingerprinting, is a method used to determine the OS that is running on a remote target system.
 
 There are two types of OS discovery or banner grabbing techniques:
 
@@ -216,10 +267,10 @@ Identify the target system’s OS with Time-to-Live (TTL):
 
 ---
 
-# Scanning Beyond IDS and Firewall (PART 1)
+# **Scanning Beyond IDS and Firewall (PART 1)**
 [PART 2 | Deep Dive into Evasion](#) - not getting caught plays a big part into attack methodologies
 
-An Intrusion Detection System (IDS) and firewall are security mechanisms designed to prevent unauthorized access to a network. However, both IDSs and firewalls have limitations. While they aim to block malicious traffic from entering the network, certain techniques can be used to send intended packets to the target and evade these defenses.
+> An Intrusion Detection System (IDS) and firewall are security mechanisms designed to prevent unauthorized access to a network. However, both IDSs and firewalls have limitations. While they aim to block malicious traffic from entering the network, certain techniques can be used to send intended packets to the target and evade these defenses.
 
 ### Techniques to Evade IDS/Firewall
 
@@ -241,66 +292,63 @@ An Intrusion Detection System (IDS) and firewall are security mechanisms designe
    nmap -f <Target IP Address>
    ```
    - **-f** switch splits the IP packet into tiny fragment packets.
-     > Packet fragmentation involves dividing a probe packet into several smaller fragments. When these packets reach the target, IDSs and firewalls behind the target generally queue and process them one by one. Due to the increased CPU and network resource consumption, many IDSs are configured to skip fragmented packets during port scans, allowing the scan to bypass detection.
+> 	Packet fragmentation involves dividing a probe packet into several smaller fragments. When these packets reach the target, IDSs and firewalls behind the target generally queue and process them one by one. Due to the increased CPU and network resource consumption, many IDSs are configured to skip fragmented packets during port scans, allowing the scan to bypass detection.
 
  2. **Source Port Manipulation**
    ```bash
    nmap -g 80 <Target IP Address>
    ```
    - **-g** or **--source-port** option manipulates the source port.
-     > Source port manipulation involves changing the actual source port number to a common one, such as HTTP (80), DNS, or FTP. This technique can be useful when firewalls are configured to allow packets from well-known ports, helping to disguise the scan as legitimate traffic and evade detection.
+> 	Source port manipulation involves changing the actual source port number to a common one, such as HTTP (80), DNS, or FTP. This technique can be useful when firewalls are configured to allow packets from well-known ports, helping to disguise the scan as legitimate traffic and evade detection.
 
  3. **Using Maximum Transmission Unit (MTU)**
    ```bash
    nmap -mtu 8 <Target IP Address>
    ```
    - **-mtu** specifies the Maximum Transmission Unit (MTU).
-     > By specifying a smaller MTU (e.g., 8 bytes), this technique sends smaller packets instead of one large packet. This can help evade filtering and detection mechanisms that expect standard-sized packets, making it harder for IDSs and firewalls to detect the scan.
+> 	By specifying a smaller MTU (e.g., 8 bytes), this technique sends smaller packets instead of one large packet. This can help evade filtering and detection mechanisms that expect standard-sized packets, making it harder for IDSs and firewalls to detect the scan.
 
  4. **IP Address Decoy**
    ```bash
    nmap -D RND:10 <Target IP Address>
    ```
    - **-D** performs a decoy scan, **RND** generates random non-reserved IP addresses.
-     > The IP address decoy technique generates or manually specifies multiple decoy IP addresses along with the real IP address. This makes it difficult for IDSs and firewalls to identify which IP address is actually performing the scan. By using this command, Nmap automatically generates a random number of decoys and randomly positions the real IP address among the decoy IP addresses.
+> 	The IP address decoy technique generates or manually specifies multiple decoy IP addresses along with the real IP address. This makes it difficult for IDSs and firewalls to identify which IP address is actually performing the scan. By using this command, Nmap automatically generates a random number of decoys and randomly positions the real IP address among the decoy IP addresses.
 
  5. **MAC Address Spoofing**
    ```bash
    nmap -sT -Pn --spoof-mac 0 <Target IP Address>
    ```
    - **--spoof-mac 0** randomizes the MAC address, **-sT** performs a TCP connect/full open scan, **-Pn** skips host discovery.
-     > MAC address spoofing involves changing the MAC address to that of a legitimate user on the network. This technique allows the attacker to send request packets to the target while pretending to be a legitimate host, thus bypassing MAC-based filtering and detection mechanisms.
+> 	MAC address spoofing involves changing the MAC address to that of a legitimate user on the network. This technique allows the attacker to send request packets to the target while pretending to be a legitimate host, thus bypassing MAC-based filtering and detection mechanisms.
 
  6. **Randomizing Host Order**
    ```bash
    nmap -T5 --randomize-hosts <Target IP Address>
    ```
    - **--randomize-hosts** option randomizes the order of hosts being scanned.
-     > This technique scans the target hosts in a random order, making it harder for IDSs and firewalls to detect a pattern in the scan and identify it as malicious activity.
+> 	This technique scans the target hosts in a random order, making it harder for IDSs and firewalls to detect a pattern in the scan and identify it as malicious activity.
 
  7. **Sending Bad Checksums**
    ```bash
    nmap --badsum <Target IP Address>
    ```
    - **--badsum** sends packets with incorrect checksums.
-     > Sending packets with bad or bogus TCP/UDP checksums confuses the target's IDS/firewall, which may not be configured to process such packets, allowing the scan to bypass detection.
+> 	Sending packets with bad or bogus TCP/UDP checksums confuses the target's IDS/firewall, which may not be configured to process such packets, allowing the scan to bypass detection.
 
  8. **Using Proxy Servers**
    ```bash
    nmap --proxies <proxy list> <Target IP Address>
    ```
    - **--proxies** option routes the scan through multiple proxy servers.
-     > Using a chain of proxy servers hides the actual source of the scan, making it difficult for IDSs and firewalls to trace the scan back to the attacker. This technique helps evade IP-based restrictions and detection mechanisms.
+> 	Using a chain of proxy servers hides the actual source of the scan, making it difficult for IDSs and firewalls to trace the scan back to the attacker. This technique helps evade IP-based restrictions and detection mechanisms.
 
  9. **Anonymizers**
    ```bash
    nmap --proxy <anonymizer proxy> <Target IP Address>
    ```
    - **--proxy** option uses an anonymizer service.
-     > Anonymizers allow attackers to bypass internet censors and evade IDS and firewall rules by masking the origin of the traffic. This technique leverages anonymizer services to hide the attacker's true identity and location.
-
----
-
+> 	Anonymizers allow attackers to bypass internet censors and evade IDS and firewall rules by masking the origin of the traffic. This technique leverages anonymizer services to hide the attacker's true identity and location.
 
 ---
 
@@ -318,15 +366,15 @@ Host Discovery using #Nmap : `nmap -sn -PR <Target IP Address> `
 
 | -sn: disables port scan
 
-P (Ping type)
- >R (ARP)
-> U (UDP)
-> E (ICMP Echo)
-> P (ICMP Timestamp)
-> M (ICMP Address Mask)
-> S (TCP SYN Ping)
-> A (TCP ACK Ping)
-> O (IP Ping)
+\-P (Ping type)
+>R (ARP)
+>U (UDP)
+>E (ICMP Echo)
+>P (ICMP Timestamp)
+>M (ICMP Address Mask)
+>S (TCP SYN Ping)
+>A (TCP ACK Ping)
+>O (IP Ping)
 
 - ICMP Address Mask Ping Scan: This technique is an alternative for the traditional ICMP ECHO ping scan, which are used to determine whether the target host is live specifically when administrators block the ICMP ECHO pings.
 ```bash
@@ -458,7 +506,21 @@ set THREADS 11
 
 ---
 
-# [Network Scanning Countermeasures](obsidian://open?vault=SkyNetDSKT&file=CEH%20v12%20Notes%202024%2F03.1-Network_Scanning%20Countermeasures)
+## Summary
+
+This chapter provides an in-depth look into scanning techniques and tools essential for identifying system vulnerabilities and mapping networks in penetration testing. Beginning with types of scanning — including port, network, and vulnerability scanning — we discussed how each serves a unique purpose in assessing system security. 
+
+Port scanning reveals open ports and active services, network scanning identifies live hosts and IP addresses, and vulnerability scanning pinpoints known weaknesses. Further sections covered the technical foundations of TCP/IP communication, examining control flags used in establishing and maintaining connections. Host discovery techniques, an integral phase in network scanning, were explained with various methods to check for live systems, such as ARP and ICMP ping scans.
+
+Advanced port and service scanning techniques were discussed, including TCP, UDP, SCTP, and IPv6 scanning methods, followed by banner grabbing/OS discovery methods to detect operating systems and service versions. 
+
+This chapter also provided insight into scanning beyond IDS and firewalls, listing techniques like packet fragmentation, source port manipulation, and decoy IP addresses to bypass detection mechanisms. 
+
+Finally, a review of powerful scanning tools, including Nmap, Hping3, and Metasploit, demonstrated practical applications for efficient scanning, evasion, and exploitation. This chapter is an essential resource for understanding the diverse range of scanning methodologies and tools, forming a foundation for more advanced security assessment techniques.
+
+---
+
+##### [Network Scanning Countermeasures ↗](../3.1-Network_Scanning%20Countermeasures)
 
 
 

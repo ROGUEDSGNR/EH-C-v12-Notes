@@ -1,12 +1,25 @@
-# Footprinting and Reconnaissance | Attack Phase 1
+# **Footprinting and Reconnaissance | Attack Phase 1**
 
 > #TLDR 
 > Footprinting is the initial phase in assessing the security posture of a target organization's IT infrastructure. By conducting footprinting and reconnaissance, one can collect extensive information about a computer system, network, and any connected devices. Essentially, footprinting creates a security profile blueprint for an organization and should be executed systematically.
 
 ---
+## **What We Get From This Exercise**
+Info Obtained in Footprinting
+###### #Objectives #FootprintingAndReconnaissance
 
-# Info Obtained in Footprinting
-###### #Objectives
+- Explain Footprinting Concepts
+- Demonstrate Footprinting through Search Engines
+- Demonstrate Footprinting through Web Services
+- Demonstrate Footprinting through Social Networking Sites
+- Use Different Techniques for Website Footprinting
+- Use Different Techniques for Email Footprinting
+- Use Different Techniques for Whois Footprinting
+- Use Different Techniques for DNS Footprinting
+- Use Different Techniques for Network Footprinting
+- Demonstrate Footprinting through Social Engineering
+- Use Various Footprinting Tools
+- Explain Footprinting Countermeasures
 
 | Organization Information                             | Network Information                              | System Information                |
 | ---------------------------------------------------- | ------------------------------------------------ | --------------------------------- |
@@ -20,6 +33,37 @@
 
 ---
 
+# Table of Contents
+
+1. [Footprinting Methodology](#footprinting-methodology)
+2. [Footprinting Techniques](#footprinting-techniques)
+	1. [Footprinting through Search Engines](#footprinting-through-search-engines)
+	2. [Footprinting through Web Services](#footprinting-through-web-services)
+	3. [Footprinting through Social Networking Sites](#footprinting-through-social-networking-sites)
+	4. [Website Footprinting](#website-footprinting)
+	5. [Email Footprinting](#email-footprinting)
+	6. [Whois Footprinting](#whois-footprinting)
+	7. [DNS Footprinting](#dns-footprinting)
+	8. [Network Footprinting](#network-footprinting)
+	9. [Footprinting through Social Engineering](#footprinting-through-social-engineering)
+3. [Tools](#tools)
+	1. [Geolocation Tools](#geolocation-tools)
+	2. [Domains and Sub-domains Enumeration](#domains-and-sub-domains-enumeration)
+	3. [FTP Search Engines](#ftp-search-engines)
+	4. [IoT Search Engines](#iot-search-engines)
+	5. [Individuals/Employee Recon - theHarvester](#individualsemployee-recon---theharvester)
+	6. [Deep and Dark Web Searching](#deep-and-dark-web-searching)
+	7. [Social Networking Tools](#social-networking-tools)
+	8. [Website Information Gathering](#website-information-gathering)
+	9. [DNS Footprinting](#dns-footprinting)
+	10. [Reverse DNS Lookup](#reverse-dns-lookup)
+	11. [Locate the Network Range](#locate-the-network-range)
+	12. [Social Engineering Tools](#social-engineering-tools)
+	13. [Additional Reconnaissance Tools](#additional-reconnaissance-tools)
+4. [Footprinting Countermeasures](#footprinting-countermeasures)
+5. [Summary](#summary)
+
+---
 # Footprinting Methodology
 
 ## Footprinting Techniques
@@ -48,7 +92,7 @@
 |                                              | Monitor Web Page Updates and Website Traffic        |
 |                                              |                                                     |
 | Email Footprinting                           | Track Email Communication                           |
-|                                              | Analyze Email Header                                |
+|                                              | analyse Email Header                                |
 |                                              |                                                     |
 | Whois Footprinting                           | Whois Lookup                                        |
 |                                              | IP Geolocation Lookup                               |
@@ -69,14 +113,14 @@
 
 # #Tools 
 
-## Geolocation
+## **Geolocation**
 
 **Ping target to get IP** then use a web service such as [IPVoid](https://www.ipvoid.com/), [Check-Host](https://check-host.net/ip-info), or [IP-Address](https://www.ip-adress.com/).
 
 ## Footprinting Through Search Engines
 
 - [Google Advanced Search Operators | Google Hacking Database ](https://www.exploit-db.com/google-hacking-database)
-	Not really hacking Google (duh!), rather than taking advantage of granular search to find potentially interesting publicly listed exploitable assets.
+	Not really hacking Google, rather than taking advantage of granular search to find potentially interesting publicly listed exploitable assets.
 
 Objectives
 - Gather information using advanced Google hacking techniques
@@ -104,25 +148,25 @@ Others:
 
 ---
 
-## Domains and Sub-domains Enumeration
+## **Domains and Sub-domains Enumeration**
 - [Netcraft](https://www.netcraft.com/tools/)
 - [Sublist3r](https://github.com/aboul3la/Sublist3r)
 
 ---
 
-## FTP Search Engines
+## **FTP Search Engines**
 - [Search FTPs](https://www.searchftps.net/)
 - [Freeware Web](https://www.freewareweb.com/)
 
 ---
 
-## IoT Search Engines
+## **IoT Search Engines**
 - [Shodan](https://www.shodan.io/)
 - [Censys](https://search.censys.io/)
 
 ---
 
-## Individuals/Employee Recon - theHarvester
+## **Individuals/Employee Recon - theHarvester**
 > Gathers emails, subdomains, hosts, employee names, open ports, and banners from public sources like search engines and PGP key servers.
 
 ```sh
@@ -135,7 +179,7 @@ theHarvester -d evilcorp -l 200 -b linkedin
 
 ---
 
-## Deep and Dark Web Searching
+## **Deep and Dark Web Searching**
 
 - [The Hidden Wiki](http://zqktlwiuavvvqqt4ybvgvi7tyo4hjl5xgfuvpdf6otjiycgwqbym2qad.onion/wiki)
 - [FakeID](http://ymvhtqya23wqpez63gyc3ke4svju3mqsby2awnhd3bk2e65izt7baqad.onion) for creating fake passports
@@ -145,7 +189,7 @@ theHarvester -d evilcorp -l 200 -b linkedin
 
 ---
 
-## Information from Various Social Networking Sites
+## **Information from Various Social Networking Sites**
 
 - [Sherlock](https://github.com/sherlock-project/sherlock): Python-based tool to gather information about a target person on social networking sites.
 
@@ -154,11 +198,11 @@ python3 sherlock.py username
 ```
 
 - [Social Searcher](https://www.social-searcher.com/)
-- [Followerwonk](https://followerwonk.com/analyze): Explore and grow your social graph, and analyse Twitter analytics.
+- [Followerwonk](https://followerwonk.com/analyse): Explore and grow your social graph, and analyse Twitter analytics.
 
 ---
 
-## Gather Information about a Target Website
+## **Gather Information about a Target Website**
 
 - [Photon](https://github.com/s0md3v/Photon): Crawl a target URL for information like URLs, email addresses, social media accounts, files, secret keys, and subdomains.
 
@@ -172,7 +216,7 @@ python3 photon.py -u example.com -o output
 - [IP2Location](https://www.ip2location.com )
 
 ---
-## DNS Footprinting
+## **DNS Footprinting**
 > HOSTNAME 2 IP
 
 | Record Type | Description                                      |
@@ -195,13 +239,14 @@ python3 photon.py -u example.com -o output
 - [SecurityTrails](https://securitytrails.com/)
 
 ---
-## Reverse DNS Lookup
+## **Reverse DNS Lookup**
 >IP 2 HOSTNAME - you can get all the websites hosted on determined server
 
 - [dnsrecon](https://github.com/darkoperator/dnsrecon)
 
 ---
-## Locate the Network Range
+## **Locate the Network Range**
+
 >  Traceroute analysis maps network topology by identifying the IP addresses of intermediate devices, such as routers and firewalls, between a source and its destination. It uses the ICMP protocol and the Time to Live (TTL) field in the IP header to determine the path to the target host within the network.
 
 - **ICMP**: The default protocol for traceroute, commonly used in Unix/Linux systems. It sends ICMP Echo Request messages and waits for ICMP Echo Reply messages. It's straightforward but can be blocked by firewalls. Less reliable in environments with strict security policies that block or rate-limit ICMP traffic.
@@ -213,7 +258,7 @@ python3 photon.py -u example.com -o output
 
 ---
 
-## Footprinting through Social Engineering
+## **Footprinting through Social Engineering**
 >Non-technical approached attack
 
 #### Social engineers attempt to gather
@@ -230,7 +275,7 @@ python3 photon.py -u example.com -o output
 - Impersonation
 
 ---
-## More tools
+## **More tools**
 ### Recon-ng
 >Recon-ng is a web reconnaissance framework with independent modules and database interaction for open-source web-based reconnaissance. 
 >	https://github.com/lanmaster53/recon-ng/wiki
@@ -241,7 +286,7 @@ python3 photon.py -u example.com -o output
 
 ---
 
-#### OSINT Framework
+#### **OSINT Framework**
 - [OSINT Framework](https://osintframework.com/)
 	- (T) - Indicates a link to a tool that must be installed and run locally
 	- (D) - Google dork
@@ -251,7 +296,7 @@ python3 photon.py -u example.com -o output
 
 ---
 
-### OSRFramework
+### **OSRFramework**
 
 > OSRFramework is a set of libraries for Open Source Intelligence tasks, including username checking, DNS lookups, information leaks research, and more.
 
@@ -291,5 +336,14 @@ searchfy -q "target user name or profile name"
 
 ---
 
-# [Footprinting Countermeasures](https://github.com/ROGUEDSGNR/EH-C-v12-Notes/blob/main/02.1-Footprinting_Countermeasures.md)
+## **Summary**
+
+This chapter covered the comprehensive methodology of footprinting, an essential reconnaissance phase in cybersecurity, where attackers and ethical hackers gather as much information as possible about a target. Techniques such as footprinting through search engines, web services, social networking sites, and DNS interrogation were detailed, each offering unique insights into a target’s digital footprint.
+
+Key tools and methods were discussed, including geolocation services, domain enumeration, email tracking, and social engineering tactics. The chapter also emphasized using tools like theHarvester, Recon-ng, and Maltego for advanced data collection and OSINT tasks. Techniques in website footprinting, such as web spidering, and email footprinting, such as email header analysis, were highlighted as effective strategies.
+
+The chapter concluded with a discussion on footprinting countermeasures, advising individuals and organizations to limit publicly available information, use anonymizing tools, and monitor their online presence to protect against reconnaissance threats. Overall, this chapter provides a foundation for understanding how footprinting fits into the broader ethical hacking process and the steps necessary for effective digital reconnaissance.
+
+---
+##### [Footprinting Countermeasures ↗](../02.1-Footprinting_Countermeasures)
 

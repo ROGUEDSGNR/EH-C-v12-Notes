@@ -3,8 +3,19 @@
 > #TLDR
 > Enumeration is the process of extracting detailed information such as usernames, machine names, network resources, shares, and services from a system or network. During the enumeration phase, an attacker establishes active connections with the system and sends targeted queries to gather more information about the target. The information collected during enumeration is used to identify vulnerabilities in the system's security, which can then be exploited to compromise the target system. This process enables the attacker to perform password attacks and gain unauthorized access to information system resources. Enumeration techniques are especially effective in an intranet environment.
 
-# Info Obtained in Enumeration
-###### #Objectives
+---
+## What We Get From This Exercise 
+Info Obtained in Enumeration
+###### #Objectives #Enumeration
+
+- Explain Enumeration Concepts
+- Demonstrate Different Techniques for NetBI0S Enumeration
+- Demonstrate Different Techniques for SNMP Enumeration
+- Use Different Techniques for LDAP Enumeration
+- Use Different Techniques for NTP and NFS Enumeration
+- Demonstrate Different Techniques for SMTP and DNS Enumeration
+- Demonstrate IPSec, VoIP, RPC, Unix/Linux, Telnet FTP, TFTP, SMB, IPv6, and BGP Enumeration
+- Explain Enumeration Countermeasures
 
 Enumeration allows the attacker to collect the following information:
 - Network resources
@@ -15,6 +26,52 @@ Enumeration allows the attacker to collect the following information:
 - Machine names
 - Users and groups
 - Applications and banners 
+
+---
+
+## Table of Contents
+
+1. [Techniques for Enumeration](#techniques-for-enumeration)
+	1. [Extract Usernames Using Email IDs](#extract-usernames-using-email-ids)
+	2. [Extract Information Using Default Passwords](#extract-information-using-default-passwords)
+	3. [Brute Force Active Directory](#brute-force-active-directory)
+	4. [Extract Information Using DNS Zone Transfer](#extract-information-using-dns-zone-transfer)
+	5. [Extract User Groups from Windows](#extract-user-groups-from-windows)
+	6. [Extract Usernames Using SNMP](#extract-usernames-using-snmp)
+2. [Services and Ports to Enumerate](#services-and-ports-to-enumerate)
+	1. [Ports and Protocols](#ports-and-protocols)
+	2. [TCP](#tcp)
+	3. [UDP](#udp)
+	4. [TCP/UDP 53: DNS Zone Transfer](#tcpudp-53-dns-zone-transfer)
+	5. [TCP/UDP 135: Microsoft RPC Endpoint Mapper](#tcpudp-135-microsoft-rpc-endpoint-mapper)
+	6. [UDP 137: NetBIOS Name Service (NBNS)](#udp-137-netbios-name-service-nbns)
+	7. [TCP 139: NetBIOS Session Service (SMB over NetBIOS)](#tcp-139-netbios-session-service-smb-over-netbios)
+	8. [TCP/UDP 445: SMB over TCP (Direct Host)](#tcpudp-445-smb-over-tcp-direct-host)
+	9. [UDP 161: Simple Network Management Protocol (SNMP)](#udp-161-simple-network-management-protocol-snmp)
+	10. [TCP/UDP 389: Lightweight Directory Access Protocol (LDAP)](#tcpudp-389-lightweight-directory-access-protocol-ldap)
+	11. [TCP 2049: Network File System (NFS)](#tcp-2049-network-file-system-nfs)
+	12. [TCP 25: Simple Mail Transfer Protocol (SMTP)](#tcp-25-simple-mail-transfer-protocol-smtp)
+	13. [TCP/UDP 162: SNMP Trap](#tcpudp-162-snmp-trap)
+	14. [UDP 500: ISAKMP/Internet Key Exchange (IKE)](#udp-500-isakmpinternet-key-exchange-ike)
+	15. [TCP 22: Secure Shell (SSH)](#tcp-22-secure-shell-ssh)
+	16. [TCP/UDP 3268: Global Catalog Service](#tcpudp-3268-global-catalog-service)
+	17. [TCP/UDP 5060, 5061: Session Initiation Protocol (SIP)](#tcpudp-5060-5061-session-initiation-protocol-sip)
+	18. [TCP 20/21: File Transfer Protocol (FTP)](#tcp-2021-file-transfer-protocol-ftp)
+	19. [TCP 23: Telnet](#tcp-23-telnet)
+	20. [UDP 69: Trivial File Transfer Protocol (TFTP)](#udp-69-trivial-file-transfer-protocol-tftp)
+	21. [TCP 179: Border Gateway Protocol (BGP)](#tcp-179-border-gateway-protocol-bgp)
+3. [Tools for Enumeration](#tools-for-enumeration)
+	1. [NetBIOS Enumeration](#netbios-enumeration)
+	2. [Enumerating User Accounts](#enumerating-user-accounts)
+	3. [SNMP Enumeration](#snmp-enumeration)
+	4. [LDAP Enumeration](#ldap-enumeration)
+	5. [NTP Enumeration](#ntp-enumeration)
+	6. [SMTP Enumeration](#smtp-enumeration)
+	7. [DNS Enumeration](#dns-enumeration)
+	8. [SMB Enumeration](#smb-enumeration)
+	9. [RIP Enumeration](#rip-enumeration)
+	10. [RPC Enumeration](#rpc-enumeration)
+4. [Summary](#summary)
 
 ---
 
@@ -37,8 +94,6 @@ dig @ns1.certifiedhacker.com certifiedhacker.com AXFR
 ```
 - This command asks the specified nameserver (in this case, `ns1.certifiedhacker.com`) to perform a zone transfer (`AXFR`) for the domain `certifiedhacker.com`.
 
-
-
 #### 5. Extract User Groups from Windows
 > To extract user groups from Windows, an attacker must have a registered user ID in Active Directory. Using this ID, the attacker can extract information about groups the user is a member of through the Windows interface or command-line methods.
 
@@ -52,20 +107,38 @@ dig @ns1.certifiedhacker.com certifiedhacker.com AXFR
 ### Ports and Protocols
 ###### <span style="background:#adff23;font-weight:bold"> Detailed descriptions follow below the table </span> -- expand items to see more
 
-| Port/Protocol | Description                                  |
-|---------------|----------------------------------------------|
-| TCP/UDP 53    | Domain Name System (DNS) Zone Transfer       |
-| TCP/UDP 135   | Microsoft RPC Endpoint Mapper                |
-| UDP 137       | NetBIOS Name Service (NBNS)                  |
-| TCP 139       | NetBIOS Session Service (SMB over NetBIOS)   |
-| TCP/UDP 445   | SMB over TCP (Direct Host)                   |
-| UDP 161       | Simple Network Management Protocol (SNMP)    |
-| TCP/UDP 389   | Lightweight Directory Access Protocol (LDAP) |
-| TCP 2049      | Network File System (NFS)                    |
-| TCP 25        | Simple Mail Transfer Protocol (SMTP)         |
-| TCP/UDP 162   | SNMP Trap                                    |
-| UDP 500       | ISAKMP/Internet Key Exchange (IKE)           |
-| TCP 22        | Secure Shell (SSH)                           |
+| **Port**   | **Protocol**      | **Service**                      | **Enumeration Purpose**                                                                 |
+|------------|-------------------|-----------------------------------|-----------------------------------------------------------------------------------------|
+| 21         | FTP               | File Transfer Protocol           | Enumerating FTP users, directories, and files.                                          |
+| 22         | SSH               | Secure Shell                     | Identifying SSH versions and brute-forcing credentials.                                |
+| 23         | Telnet            | Telnet                           | Retrieving banner information and brute-forcing credentials.                           |
+| 25         | SMTP              | Simple Mail Transfer Protocol    | Extracting user accounts via VRFY, EXPN, and RCPT TO commands.                        |
+| 53         | DNS               | Domain Name System               | Performing zone transfers and gathering DNS records.                                   |
+| 69         | TFTP              | Trivial File Transfer Protocol   | Accessing configuration files and sensitive information.                               |
+| 80/8080    | HTTP/HTTP Proxy   | Hypertext Transfer Protocol      | Enumerating web directories, applications, and vulnerabilities.                       |
+| 110        | POP3              | Post Office Protocol             | Enumerating user accounts and brute-forcing email credentials.                        |
+| 135        | RPC/DCOM          | Remote Procedure Call            | Gathering information on services running on Windows.                                 |
+| 137        | UDP               | NetBIOS/WINS                     | Enumerating NetBIOS names, shares, and associated services on Windows systems.        |
+| 139        | NetBIOS           | NetBIOS Session Service          | Enumerating shares, sessions, and user accounts on Windows systems.                  |
+| 143        | IMAP              | Internet Message Access Protocol | Enumerating mailboxes and brute-forcing credentials.                                  |
+| 161/162    | SNMP              | Simple Network Management Protocol | Enumerating network devices, configurations, and community strings.               |
+| 179        | BGP               | Border Gateway Protocol          | Enumerating routing information, AS numbers, and potential misconfigurations in BGP setups. |
+| 389        | LDAP              | Lightweight Directory Access Protocol | Extracting user and group information from directories.                             |
+| 443        | HTTPS             | Secure HTTP                      | Enumerating secure web services and identifying misconfigurations.                   |
+| 445        | SMB/CIFS          | Server Message Block/Common Internet File System | Enumerating shared resources and user accounts on Windows systems.      |
+| 500        | IKE               | Internet Key Exchange            | Enumerating VPNs, identifying key exchange mechanisms, and targeting IPSec tunnels.   |
+| 512/513/514| TCP/UDP           | Linux R services                 | Identifying and enumerating older remote execution services on Unix/Linux systems.    |
+| 1433       | MSSQL             | Microsoft SQL Server             | Extracting database information and brute-forcing credentials.                        |
+| 1521       | Oracle TNS        | Oracle Database                  | Enumerating Oracle database instances and user accounts.                              |
+| 3306       | MySQL             | MySQL Database                   | Enumerating database information and user accounts.                                   |
+| 3389       | RDP               | Remote Desktop Protocol          | Enumerating Windows RDP services and attempting brute force.                          |
+| 5900       | VNC               | Virtual Network Computing        | Identifying and gaining access to VNC servers.                                        |
+| 8080       | HTTP Proxy        | Web Proxy                        | Enumerating proxy services and testing for proxy misconfigurations.                  |
+
+**Note:** This list is not exhaustive but includes commonly targeted ports/services for enumeration.
+
+
+---
 
 Transmission Control Protocol (TCP) and User Datagram Protocol (UDP) manage data communications between terminals in a network.
 
@@ -151,10 +224,9 @@ TFTP is a connectionless protocol used for transferring files over the Internet.
 #### TCP 179: Border Gateway Protocol (BGP)
 BGP is widely used by Internet service providers (ISPs) to maintain routing tables and efficiently process Internet traffic. BGP routers establish sessions on TCP port 179. Misconfiguration of BGP may lead to various attacks such as dictionary attacks, resource-exhaustion attacks, flooding attacks, and hijacking attacks.
 
-#
 ---
 
-# #Tools for Enumeration
+# **Tools for Enumeration**
 #### 1. NetBIOS Enumeration
    - **Description**: NetBIOS enumeration is used to gather information from Windows-based systems such as shared resources, user accounts, and network configurations.
    - **Tools**: `nbtstat`, nb`NetBIOS Enumerator`, `nmap` (through `--script nbstat`)
@@ -169,6 +241,7 @@ BGP is widely used by Internet service providers (ISPs) to maintain routing tabl
 >- The list of computers that belong to a domain
 >- The list of shares on the individual hosts in the network
 >- Policies and passwords
+
 ##### NBTStat Switches
 
 | Switch                       | Name                           | Function                                                                                                                                      |
@@ -178,7 +251,7 @@ BGP is widely used by Internet service providers (ISPs) to maintain routing tabl
 | **-c**                       | Cache                          | Lists the contents of the NetBIOS name cache.                                                                                                 |
 | **-n**                       | Names                          | Displays the names registered locally by NetBIOS applications such as the server and redirector.                                              |
 | **-r**                       | Resolved                       | Displays a count of all names resolved by broadcast or WINS server.                                                                           |
-| **-R**                       | Reload                         | Purges the name cache and reloads all #PRE entries from LMHosts.                                                                              |
+| **-R**                       | Reload                         | Purges the name cache and reloads all PRE-entries from LMHosts.                                                                               |
 | **-RR**                      | Release Refresh                | Sends name release packets to the WINS server and starts a refresh, reregistering all names with the name server.                             |
 | **-s**                       | Sessions by NetBIOS names      | Lists the NetBIOS sessions table converting destination IP addresses to computer NetBIOS names.                                               |
 | **-S**                       | Sessions by IP address         | Lists the current NetBIOS sessions and their status, with the IP addresses.                                                                   |
@@ -459,3 +532,24 @@ enum4linux -u martin -p apple -U <Target IP Address>
 - `-o`: retrieves the OS information.
 - `-G`: retrieves group and member list.
 - `-S`: retrieves share list.
+
+---
+
+## Summary 
+
+This chapter explored various techniques and tools for enumeration, an essential phase in ethical hacking and penetration testing. 
+
+Enumeration allows security professionals to extract critical information about target systems, networks, and users. Key techniques discussed include username extraction, DNS zone transfers, Active Directory brute-forcing, and leveraging SNMP to uncover usernames and groups within networks.
+
+We covered an extensive list of services and ports commonly targeted for enumeration, with a focus on protocols like DNS, SMB, LDAP, and FTP. 
+
+For each, we detailed how attackers might exploit vulnerabilities associated with these services to gain insight into network structures, user details, and more. 
+
+The tools section introduced specific commands and utilities for each protocol and service, providing actionable steps for identifying and gathering information on a system’s resources and potential weaknesses. 
+
+Ultimately, this chapter serves as a comprehensive guide to the art of enumeration, equipping security practitioners with the knowledge to methodically and effectively enumerate information, laying the groundwork for further penetration testing activities.
+
+---
+
+##### [Enumeration Countermeasures ↗](../04.1-Enumeration_Countermeasures)
+
