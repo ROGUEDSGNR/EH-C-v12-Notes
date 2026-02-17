@@ -485,7 +485,7 @@ Metasploit enables penetration testers to:
 | **Security Tools Integration** | - Web Services connect Interfaces with Modules                                                             |
 | **Modules**                    | - Exploits <br> - Payloads <br> - Encoders <br> - NOP Generators <br> - Auxiliary                          |
 
-![[Pasted image 20241114162329.png]]
+![Apache Architecture](Images/Pasted%20image%2020241114162329.png)
 
 The Metasploit Framework is an open-source exploitation framework designed for rapid development and reuse of security tools. Its modular architecture includes components for:
 

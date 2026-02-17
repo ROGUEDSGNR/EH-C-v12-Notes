@@ -1,6 +1,6 @@
 # Table of Contents
 
-![[Logo-RG-EG-SafeMargin@0.5x.webp]]
+![Logo](Images/Logo-RG-EG-SafeMargin@0.5x.webp)
 
 - **Module 00: Essential Concepts**
   - Understand Operating System Concepts

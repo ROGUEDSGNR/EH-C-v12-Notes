@@ -1,0 +1,59 @@
+# Table of Contents
+
+* [Introduction](README.md)
+
+## Core Modules
+
+* [Module 00: Essential Concepts](00-Essential_Concepts.md)
+* [Module 01: Introduction to Ethical Hacking](01-Introduction-to-Ethical-Hacking.md)
+* [Module 02: Footprinting and Reconnaissance](02-Footprinting_and_Reconnaissance.md)
+  * [Footprinting Countermeasures](02.1-Footprinting_Countermeasures.md)
+* [Module 03: Scanning Networks](03-Scanning_Networks.md)
+  * [Network Scanning Countermeasures](03.1-Network_Scanning%20Countermeasures.md)
+* [Module 04: Enumeration](04-Enumeration.md)
+  * [Enumeration Countermeasures](04.1-Enumeration_Countermeasures.md)
+* [Module 05: Vulnerability Analysis](05-Vulnerability_Analysis.md)
+  * [Vulnerability Management Lifecycle and Reporting](05.1-Vulnerability_Management%20Lifecycle_and_Reporting.md)
+  * [Vulnerability Analysis Countermeasures](05.1-Vulnerability_Analysis_Countermeasures.md)
+* [Module 06: System Hacking](06-System_Hacking.md)
+* [Module 07: Malware Threats](07-Malware_Threats.md)
+* [Module 08: Sniffing](08-Sniffing.md)
+* [Module 09: Social Engineering](09-Social_Engineering.md)
+* [Module 10: Denial-of-Service](10-Denial_of_Service.md)
+* [Module 11: Session Hijacking](11-Session_Hijacking.md)
+* [Module 12: Evading IDS, Firewalls, and Honeypots](12-Evading_IDS_Firewalls_and_Honeypots.md)
+* [Module 13: Hacking Web Servers](13-Hacking_Web_Servers.md)
+  * [Web Server Countermeasures](13.1-Hacking_Web_Servers_Countermeasures.md)
+* [Module 14: Hacking Web Applications](14-Hacking_Web_Applications.md)
+* [Module 15: SQL Injection](15-SQL_Injection.md)
+* [Module 16: Hacking Wireless Networks](16-Hacking_Wireless_Networks.md)
+* [Module 17: Hacking Mobile Platforms](17-Hacking_Mobile_Platforms.md)
+* [Module 18: IoT and OT Hacking](18-IoT_and_OT_Hacking.md)
+* [Module 19: Cloud Computing](19-Cloud_Computing.md)
+* [Module 20: Cryptography](20-Cryptography.md)
+
+## Practical Labs
+
+* [Lab 02: Footprinting and Reconnaissance](Labs/02-Footprinting_and_Reconnaissance-Labs.md)
+* [Lab 03: Scanning Networks](Labs/03-Scanning_Networks-Labs.md)
+* [Lab 04: Enumeration](Labs/04-Enumeration-Labs.md)
+* [Lab 05: Vulnerability Analysis](Labs/05-Vulnerability_Analysis-Labs.md)
+* [Lab 06: System Hacking](Labs/06-System_Hacking-Labs.md)
+* [Lab 07: Malware Threats](Labs/07-Malware_Threats-Labs.md)
+* [Lab 08: Sniffing](Labs/08-Sniffing-Labs.md)
+* [Lab 09: Social Engineering](Labs/09-Social_Engineering-Labs.md)
+* [Lab 10: Denial-of-Service](Labs/10-Denial_of_Service-Labs.md)
+* [Lab 11: Session Hijacking](Labs/11-Session_Hijacking-Labs.md)
+* [Lab 12: Evading IDS, Firewalls, and Honeypots](Labs/12-Evading_IDS_Firewalls_and_Honeypots-Labs.md)
+* [Lab 13: Hacking Web Servers](Labs/13-Hacking_Web_Servers-Labs.md)
+* [Lab 14: Hacking Web Applications](Labs/14-Hacking_Web_Applications-Labs.md)
+* [Lab 15: SQL Injection](Labs/15-SQL_Injection-Labs.md)
+* [Lab 16: Hacking Wireless Networks](Labs/16-Hacking_Wireless_Networks-Labs.md)
+* [Lab 17: Hacking Mobile Platforms](Labs/17-Hacking_Mobile_Platforms-Labs.md)
+* [Lab 18: IoT and OT Hacking](Labs/18-IoT_and_OT_Hacking-Labs.md)
+* [Lab 19: Cloud Computing](Labs/19-Cloud_Computing-Labs.md)
+* [Lab 20: Cryptography](Labs/20-Cryptography-Labs.md)
+
+## Reference
+
+* [Original Table of Contents](EHC_v12_Table_of_Contents.md)

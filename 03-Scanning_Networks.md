@@ -100,7 +100,7 @@ Info Obtained in Network Scanning
 
 > The TCP header contains several flags that control data transmission across a TCP connection. Six TCP control flags manage the connection between hosts and provide instructions to the system. Four of these flags (SYN, ACK, FIN, and RST) are responsible for the establishment, maintenance, and termination of a connection. The remaining two flags (PSH and URG) provide additional instructions to the system. Each flag is 1 bit in size, making the TCP Flags section 6 bits in total. When a flag value is set to "1," that flag is activated.
 
-![[Pasted image 20240704103804.png]]
+![Network Scanning Diagram](Images/Pasted%20image%2020240704103804.png)
 
 # TCP/IP Communication
 
@@ -125,7 +125,7 @@ A TCP session begins using the three-way handshake mechanism:
 
 Host discovery is the first step in network scanning. This section highlights methods for checking for live systems in a network using various ping scan techniques. It also discusses how to perform a ping sweep to detect live hosts/systems, along with various ping sweep tools.
 
-![[Pasted image 20240704195640.png]]
+![Port Scanning Diagram](Images/Pasted%20image%2020240704195640.png)
 ## **Host Discovery Scanning**
 
  -  **ARP Ping Scan**
@@ -164,7 +164,7 @@ Here are some common host discovery techniques:
 
 # **Phase 2 Port/Service Scanning Techniques**
 
-![[Pasted image 20240709163816.png]]
+![TCP/IP Stack](Images/Pasted%20image%2020240709163816.png)
 
 ### Port Scanning Techniques
 

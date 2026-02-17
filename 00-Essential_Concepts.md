@@ -9,7 +9,7 @@
 > Not being familiarized with them, might be a frustration point and learning deterrent. 
 > We don't want that... <font color="#adff23">that said</font>, this is the starting point of a very exciting and powerful learning experience! Refer to this page, the glossary or the community whenever in doubt.
 
-![[SafeMargin_ROGUEDSGNR25@0.5x.png]]
+![SafeMargin Logo](Images/SafeMargin_ROGUEDSGNR25@0.5x.png)
 **Good luck – go out there and show them what you’re made of!**
 
 ---
