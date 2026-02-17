@@ -54,6 +54,11 @@
 * [Lab 19: Cloud Computing](Labs/19-Cloud_Computing-Labs.md)
 * [Lab 20: Cryptography](Labs/20-Cryptography-Labs.md)
 
-## Reference
+## Resources & References
 
+* [Glossary](Resources/Glossary.md)
+* [Nmap Ultimate Cheatsheet](Resources/Nmap_Ultimate_Cheatsheet.md)
+* [Reserved Ports Table](Resources/Reserved_Ports_Table.md)
+* [Footprinting Checklist](Resources/Footprinting%20Checklist.md)
+* [Common Ports Used by Trojans](Resources/07.1-Common_Ports_used_by_Trojans.md)
 * [Original Table of Contents](EHC_v12_Table_of_Contents.md)
