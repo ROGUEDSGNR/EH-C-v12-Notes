@@ -858,7 +858,7 @@ A global e-commerce platform uses a CDN to reduce latency for customers accessin
 
 ## Diagram: NIST Cloud Deployment Architecture
 
-![[Pasted image 20241121155915.png]]
+![Cloud Computing Diagram](Images/Pasted%20image%2020241121155915.png)
 
 ---
 

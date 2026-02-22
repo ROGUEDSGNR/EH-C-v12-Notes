@@ -1,0 +1,22 @@
+# GitBook build output
+_book/
+.grunt
+
+# Node.js
+node_modules/
+npm-debug.log
+package-lock.json
+
+# Obsidian
+.obsidian/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
