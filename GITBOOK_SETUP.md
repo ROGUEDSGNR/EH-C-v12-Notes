@@ -109,6 +109,7 @@ def example():
 ### Callouts and Hints
 GitBook supports special callouts:
 
+```
 {% hint style="info" %}
 This is an info callout
 {% endhint %}
@@ -116,6 +117,7 @@ This is an info callout
 {% hint style="warning" %}
 This is a warning callout
 {% endhint %}
+```
 
 ## 🔄 Keeping GitBook Updated
 
