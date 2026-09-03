@@ -1,54 +1,79 @@
-# Workflow for building and deploying a GitBook (honkit) site to GitHub Pages
-name: Deploy GitBook to Pages
+# Build and validate the HonKit site; deploy only trusted main-branch runs.
+name: Validate and deploy HonKit to Pages
 
 on:
-  # Runs on pushes targeting the default branch
+  pull_request:
   push:
     branches: ["main"]
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
-  pages: write
-  id-token: write
-
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
 
 jobs:
-  # Build job
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        with:
+          persist-credentials: false
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
-          node-version: '20'
-      - name: Install honkit
-        run: npm ci
-      - name: Setup Pages
-        id: pages
-        uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5
-      - name: Build with honkit
-        run: npx honkit build
-      - name: Upload artifact
+          node-version: "24"
+          cache: npm
+      - name: Install locked dependencies without lifecycle scripts
+        run: npm ci --ignore-scripts
+      - name: Record runtime versions
+        run: |
+          node --version
+          npm --version
+          ./node_modules/.bin/honkit --version
+      - name: Audit dependencies
+        continue-on-error: true
+        run: npm audit --audit-level=low
+      - name: Build with HonKit
+        run: ./node_modules/.bin/honkit build . _book
+      - name: Record baseline navigation output
+        run: |
+          node <<'NODE'
+          const fs = require("node:fs");
+          const path = require("node:path");
+
+          const summary = fs.readFileSync("SUMMARY.md", "utf8");
+          const entries = [...summary.matchAll(/\[[^\]]+\]\(([^)]+\.md(?:#[^)]*)?)\)/g)];
+          const rawMarkdown = [];
+          const walk = (directory) => {
+            for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
+              const item = path.join(directory, entry.name);
+              if (entry.isDirectory()) walk(item);
+              else if (item.endsWith(".md")) rawMarkdown.push(item);
+            }
+          };
+          walk("_book");
+
+          console.log(`SUMMARY page entries: ${entries.length}`);
+          console.log(`Raw Markdown files in _book: ${rawMarkdown.length}`);
+          for (const item of rawMarkdown) console.log(item);
+          NODE
+      - name: Upload Pages artifact
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
         uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3
         with:
           path: ./_book
 
-  # Deployment job
   deploy:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    concurrency:
+      group: pages
+      cancel-in-progress: false
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
