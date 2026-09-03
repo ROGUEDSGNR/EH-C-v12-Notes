@@ -1,0 +1,25 @@
+{
+  "name": "EH-C v12 Notes",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:24-bookworm",
+  "hostRequirements": {
+    "cpus": 2
+  },
+  "remoteUser": "node",
+  "postCreateCommand": "npm ci --ignore-scripts",
+  "forwardPorts": [4000],
+  "portsAttributes": {
+    "4000": {
+      "label": "HonKit preview",
+      "onAutoForward": "notify",
+      "visibility": "private"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "markdown.validate.enabled": true,
+        "files.trimTrailingWhitespace": true
+      }
+    }
+  }
+}
