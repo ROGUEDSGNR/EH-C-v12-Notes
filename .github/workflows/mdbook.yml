@@ -4,7 +4,9 @@ name: Validate and deploy HonKit to Pages
 on:
   pull_request:
   push:
-    branches: ["main"]
+    branches:
+      - main
+      - fix/honkit-navigation-security
   workflow_dispatch:
 
 permissions:
@@ -60,6 +62,30 @@ jobs:
         uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3
         with:
           path: ./_book
+
+  create-draft-pr:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/fix/honkit-navigation-security'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - name: Create the remediation pull request if absent
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          if gh pr list --head fix/honkit-navigation-security --state all --json number --jq 'length' | grep -qx '0'; then
+            gh pr create \
+              --draft \
+              --base main \
+              --head fix/honkit-navigation-security \
+              --title "fix: harden HonKit navigation and Pages validation" \
+              --body "Remote-only remediation for confirmed HonKit navigation and workflow findings. The first Actions run records the untouched-source baseline. No deployment, merge, direct main update, local checkout, or GitHub Copilot AI. Draft: do not merge."
+          else
+            echo "A pull request already exists for this branch; no duplicate created."
+          fi
 
   deploy:
     if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
