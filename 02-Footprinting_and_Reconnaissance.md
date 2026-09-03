@@ -29,7 +29,7 @@ Info Obtained in Footprinting
 | Background of the organization                       | IP adresses of reachable systems                 | Usernames and passwords           |
 | Web technologies                                     | Whois records                                    |                                   |
 | News articles, press releases, and related documents | DNS records                                      |                                   |
-[[Footprinting Checklist]]
+[Footprinting Checklist](Resources/Footprinting_Checklist.md)
 
 ---
 
@@ -345,5 +345,5 @@ Key tools and methods were discussed, including geolocation services, domain enu
 The chapter concluded with a discussion on footprinting countermeasures, advising individuals and organizations to limit publicly available information, use anonymizing tools, and monitor their online presence to protect against reconnaissance threats. Overall, this chapter provides a foundation for understanding how footprinting fits into the broader ethical hacking process and the steps necessary for effective digital reconnaissance.
 
 ---
-##### [Footprinting Countermeasures ↗](../02.1-Footprinting_Countermeasures)
+##### [Footprinting Countermeasures ↗](02.1-Footprinting_Countermeasures.md)
 

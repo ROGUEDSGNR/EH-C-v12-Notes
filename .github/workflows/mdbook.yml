@@ -30,49 +30,32 @@ jobs:
           node --version
           npm --version
           ./node_modules/.bin/honkit --version
-      - name: Audit dependencies
+      - name: Record dependency audit
         continue-on-error: true
         run: npm audit --audit-level=low
+      - name: Validate source navigation
+        run: node scripts/validate-navigation.mjs --source
       - name: Build with HonKit
         run: ./node_modules/.bin/honkit build . _book
-      - name: Record baseline navigation output
-        run: |
-          node <<'NODE'
-          const fs = require("node:fs");
-          const path = require("node:path");
-
-          const summary = fs.readFileSync("SUMMARY.md", "utf8");
-          const entries = [...summary.matchAll(/\[[^\]]+\]\(([^)]+\.md(?:#[^)]*)?)\)/g)];
-          const rawMarkdown = [];
-          const htmlFiles = [];
-          const walk = (directory) => {
-            for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
-              const item = path.join(directory, entry.name);
-              if (entry.isDirectory()) walk(item);
-              else if (item.endsWith(".md")) rawMarkdown.push(item);
-              else if (item.endsWith(".html")) htmlFiles.push(item);
-            }
-          };
-          walk("_book");
-
-          console.log(`SUMMARY page entries: ${entries.length}`);
-          console.log(`Generated HTML files: ${htmlFiles.length}`);
-          console.log(`Raw Markdown files in _book: ${rawMarkdown.length}`);
-          for (const item of rawMarkdown) console.log(item);
-          NODE
+      - name: Validate generated navigation
+        run: node scripts/validate-navigation.mjs --book _book
       - name: Archive Pages artifact
         if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        shell: bash
+        env:
+          INPUT_PATH: ./_book
         run: |
+          set -euo pipefail
           tar \
             --dereference --hard-dereference \
-            --directory "_book" \
+            --directory "$INPUT_PATH" \
             -cvf "$RUNNER_TEMP/artifact.tar" \
             --exclude=.git \
             --exclude=.github \
             .
       - name: Upload Pages artifact
         if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: github-pages
           path: ${{ runner.temp }}/artifact.tar

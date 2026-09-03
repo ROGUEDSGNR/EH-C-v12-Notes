@@ -551,5 +551,5 @@ Ultimately, this chapter serves as a comprehensive guide to the art of enumerati
 
 ---
 
-##### [Enumeration Countermeasures ↗](../04.1-Enumeration_Countermeasures)
+##### [Enumeration Countermeasures ↗](04.1-Enumeration_Countermeasures.md)
 
