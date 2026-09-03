@@ -44,48 +44,40 @@ jobs:
           const summary = fs.readFileSync("SUMMARY.md", "utf8");
           const entries = [...summary.matchAll(/\[[^\]]+\]\(([^)]+\.md(?:#[^)]*)?)\)/g)];
           const rawMarkdown = [];
+          const htmlFiles = [];
           const walk = (directory) => {
             for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
               const item = path.join(directory, entry.name);
               if (entry.isDirectory()) walk(item);
               else if (item.endsWith(".md")) rawMarkdown.push(item);
+              else if (item.endsWith(".html")) htmlFiles.push(item);
             }
           };
           walk("_book");
 
           console.log(`SUMMARY page entries: ${entries.length}`);
+          console.log(`Generated HTML files: ${htmlFiles.length}`);
           console.log(`Raw Markdown files in _book: ${rawMarkdown.length}`);
           for (const item of rawMarkdown) console.log(item);
           NODE
+      - name: Archive Pages artifact
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        run: |
+          tar \
+            --dereference --hard-dereference \
+            --directory "_book" \
+            -cvf "$RUNNER_TEMP/artifact.tar" \
+            --exclude=.git \
+            --exclude=.github \
+            .
       - name: Upload Pages artifact
         if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
-        uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
-          path: ./_book
-
-  create-draft-pr:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/fix/honkit-navigation-security'
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pull-requests: write
-    steps:
-      - name: Create the remediation pull request if absent
-        env:
-          GH_TOKEN: ${{ github.token }}
-          GH_REPO: ${{ github.repository }}
-        run: |
-          set -euo pipefail
-          if gh pr list --head fix/honkit-navigation-security --state all --json number --jq 'length' | grep -qx '0'; then
-            gh pr create \
-              --draft \
-              --base main \
-              --head fix/honkit-navigation-security \
-              --title "fix: harden HonKit navigation and Pages validation" \
-              --body "Remote-only remediation for confirmed HonKit navigation and workflow findings. The first Actions run records the untouched-source baseline. No deployment, merge, direct main update, local checkout, or GitHub Copilot AI. Draft: do not merge."
-          else
-            echo "A pull request already exists for this branch; no duplicate created."
-          fi
+          name: github-pages
+          path: ${{ runner.temp }}/artifact.tar
+          retention-days: 1
+          if-no-files-found: error
 
   deploy:
     if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
