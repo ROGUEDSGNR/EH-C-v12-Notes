@@ -155,7 +155,7 @@ Here are some common host discovery techniques:
 | TCP SYN Ping Scan           | `nmap -sn -PS <Target IP Address>`       | Empty TCP SYN request                                                | ACK response - Host is active <br>No response - Host is inactive                                                  | - Useful to determine if the host is active without creating any connection <br>- Leaves no traces for detection                                        |
 | TCP ACK Ping Scan           | `nmap -sn -PA <Target IP Address>`       | Empty TCP ACK request                                                | RST response - Host is active <br>No response - Host is inactive                                                  | - Maximizes the chances of bypassing the firewall                                                                                                       |
 | IP Protocol Ping Scan       | `nmap -sn -PO <Target IP Address>`       | IP ping requests using different IP protocols (ICMP, IGMP, TCP, UDP) | Any response - Host is active <br>No response - Host is inactive                                                  | - Sends different packets using different IP protocols in the hope of receiving a response indicating that a host is online                             |
-> [!NOTE]
+> **Note:**
 > that <font color="#adff23">we're not scanning for ports and services yet</font>, thus the use of Nmap option `-sn`. 
 > 
 > Ports/Services/etc will be scanned once we stipulate the *live* hosts we want to attack (in the next phase).
@@ -210,7 +210,7 @@ Port scanning techniques can be categorized based on the type of protocol used f
 
 ### Scanning Techniques Table
 
-> [!NOTE]
+> **Note:**
 > The<font color="#adff23"> ↪ </font>symbol indicates EH|C scope. Nothing more.
 
 
