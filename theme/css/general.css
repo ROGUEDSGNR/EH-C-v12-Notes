@@ -132,7 +132,7 @@ summary:focus-visible,
 }
 
 .sidebar-panel > summary {
-  display: none;
+  display: block;
   padding: 0.8rem 1.15rem;
   cursor: pointer;
 }
@@ -475,11 +475,29 @@ summary {
 @media print {
   :root {
     color-scheme: light;
+    --ink: #111;
+    --muted: #444;
+    --muted-2: #555;
+    --void: #fff;
+    --panel: #fff;
+    --panel-2: #f2f2f2;
+    --line: #666;
+    --line-soft: #aaa;
+    --acid: #1f5b00;
+    --brand-light: #222;
+    --signal-cyan: #005f56;
+    --signal-violet: #3427a8;
+    --focus: #000;
   }
 
+  html,
   body {
-    background: white;
-    color: black;
+    background: #fff;
+    color: #000;
+  }
+
+  pre {
+    background: #f2f2f2;
   }
 
   .sidebar,

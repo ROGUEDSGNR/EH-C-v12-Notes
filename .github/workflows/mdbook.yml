@@ -13,6 +13,12 @@ on:
 permissions:
   contents: read
 
+# Serialize validation with production publication so an older slow run cannot
+# deploy after a newer main-branch run.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -154,9 +160,6 @@ jobs:
     permissions:
       pages: write
       id-token: write
-    concurrency:
-      group: pages
-      cancel-in-progress: false
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
