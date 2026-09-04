@@ -170,7 +170,7 @@ Here are some common host discovery techniques:
 
 Port scanning techniques can be categorized based on the type of protocol used for communication within the network. Here are the different categories and methods:
 
-#### <span style="background:#d4b106"> TCP Scanning </span>
+#### <mark>TCP Scanning</mark>
 
 1. **Open TCP Scanning Methods**
    - **TCP Connect/Full-open Scan**
@@ -188,25 +188,25 @@ Port scanning techniques can be categorized based on the type of protocol used f
 
 3. **Third Party and Spoofed TCP Scanning Methods**
    - **IDLE/IP ID Header Scan**
-#### <span style="background:#d4b106"> UDP Scanning </span>
+#### <mark>UDP Scanning</mark>
 
 - **UDP Scanning**
 
-#### <span style="background:#d4b106"> SCTP Scanning </span>
+#### <mark>SCTP Scanning</mark>
 
 1. **SCTP INIT Scanning**
 2. **SCTP COOKIE/ECHO Scanning**
 
-#### <span style="background:#d4b106"> SSDP Scanning </span>
+#### <mark>SSDP Scanning</mark>
 
 - **SSDP and List Scanning**
 
-#### <span style="background:#d4b106"> IPv6 Scanning </span>
+#### <mark>IPv6 Scanning</mark>
 
 - **IPv6 Scanning**
 
 > [!Resources]
-> # [Reserved Ports Table](obsidian://open?vault=SkyNetDSKT&file=CEH%20v12%20Notes%202024%2F03-Scanning_Networks)
+> # [Reserved Ports Table](Resources/Reserved_Ports_Table.md)
 
 ### Scanning Techniques Table
 
@@ -268,7 +268,7 @@ Identify the target system’s OS with Time-to-Live (TTL):
 ---
 
 # **Scanning Beyond IDS and Firewall (PART 1)**
-[PART 2 | Deep Dive into Evasion](#) - not getting caught plays a big part into attack methodologies
+[PART 2 | Deep Dive into Evasion](12-Evading_IDS_Firewalls_and_Honeypots.md) - not getting caught plays a big part into attack methodologies
 
 > An Intrusion Detection System (IDS) and firewall are security mechanisms designed to prevent unauthorized access to a network. However, both IDSs and firewalls have limitations. While they aim to block malicious traffic from entering the network, certain techniques can be used to send intended packets to the target and evade these defenses.
 
@@ -433,7 +433,7 @@ nmap -sX -v <Target IP Address>
 > > In this command, -I specifies an immediate mode and -v specifies a verbose mode.
 
 > [!Resources]
-> # [Nmap Ultimate Cheatsheet](obsidian://open?vault=SkyNetDSKT&file=CEH%20v12%20Notes%202024%2FResources%2FNmap_Ultimate_Cheatsheet)
+> # [Nmap Ultimate Cheatsheet](Resources/Nmap_Ultimate_Cheatsheet.md)
 
 
 Create Custom UDP and TCP Packets using Hping3 to Scan beyond the IDS/Firewall

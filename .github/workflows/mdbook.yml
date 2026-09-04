@@ -1,7 +1,9 @@
-# Build and validate the HonKit site; deploy only trusted main-branch runs.
-name: Validate and deploy HonKit to Pages
+# Build and validate the hardened mdBook site; deploy only trusted main-branch runs.
+name: Validate and deploy mdBook to Pages
 
 on:
+  schedule:
+    - cron: "17 3 * * 1"
   pull_request:
   push:
     branches:
@@ -14,32 +16,115 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
         with:
           persist-credentials: false
+
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: "24"
-          cache: npm
-      - name: Install locked dependencies without lifecycle scripts
-        run: npm ci --ignore-scripts
-      - name: Record runtime versions
+
+      - name: Record dependency posture
         run: |
+          set -euo pipefail
           node --version
-          npm --version
-          ./node_modules/.bin/honkit --version
-      - name: Record dependency audit
-        continue-on-error: true
-        run: npm audit --audit-level=low
-      - name: Validate source navigation
-        run: node scripts/validate-navigation.mjs --source
-      - name: Build with HonKit
-        run: ./node_modules/.bin/honkit build . _book
-      - name: Validate generated navigation
-        run: node scripts/validate-navigation.mjs --book _book
+          test ! -e package.json
+          test ! -e package-lock.json
+          echo "npm audit: not applicable—no npm manifest, lockfile, or installed npm dependency graph."
+
+      - name: Validate source navigation and theme
+        run: node scripts/validate-navigation.mjs source
+
+      - name: Build the pinned mdBook container
+        env:
+          IMAGE: ehc-mdbook:${{ github.sha }}
+        run: docker build --pull --tag "$IMAGE" --file .devcontainer/Dockerfile .devcontainer
+
+      - name: Record generator versions and audit its exact Rust lockfile
+        env:
+          IMAGE: ehc-mdbook:${{ github.sha }}
+        run: |
+          set -euo pipefail
+          docker run --rm --network none "$IMAGE" sh -lc 'node --version && mdbook --version'
+          container_id="$(docker create "$IMAGE" true)"
+          cleanup() { docker rm --force "$container_id" >/dev/null 2>&1 || true; }
+          trap cleanup EXIT
+          docker cp "$container_id:/usr/local/share/mdbook/Cargo.lock" \
+            "$RUNNER_TEMP/mdbook.Cargo.lock"
+          cleanup
+          trap - EXIT
+          node scripts/audit-cargo-lock-osv.mjs "$RUNNER_TEMP/mdbook.Cargo.lock"
+
+      - name: Stage the exact mdBook source
+        run: node scripts/stage-mdbook.mjs
+
+      - name: Build without network access
+        env:
+          IMAGE: ehc-mdbook:${{ github.sha }}
+        run: |
+          set -euo pipefail
+          docker run --rm --network none \
+            --user "$(id -u):$(id -g)" \
+            --volume "$GITHUB_WORKSPACE:/workspace" \
+            --workdir /workspace \
+            "$IMAGE" mdbook build
+          test -f _book/toc.html
+          test ! -L _book/toc.html
+          rm -- _book/toc.html
+
+      - name: Validate the generated allowlisted artifact
+        run: node scripts/validate-navigation.mjs generated
+
+      - name: Smoke-test the private loopback preview
+        run: |
+          set -euo pipefail
+          node scripts/preview.mjs >"$RUNNER_TEMP/preview.log" 2>&1 &
+          preview_pid="$!"
+          cleanup() {
+            kill "$preview_pid" >/dev/null 2>&1 || true
+            wait "$preview_pid" >/dev/null 2>&1 || true
+          }
+          trap cleanup EXIT
+          for attempt in {1..20}; do
+            if curl --fail --silent --show-error \
+              http://127.0.0.1:4000/ >/dev/null; then
+              break
+            fi
+            if [ "$attempt" -eq 20 ]; then
+              cat "$RUNNER_TEMP/preview.log"
+              exit 1
+            fi
+            sleep 1
+          done
+          curl --fail --silent --show-error \
+            http://127.0.0.1:4000/Labs/14-Hacking_Web_Applications-Labs.html \
+            >/dev/null
+          curl --fail --silent --show-error \
+            http://127.0.0.1:4000/Resources/Footprinting_Checklist.html \
+            >/dev/null
+          curl --fail --silent --show-error \
+            http://127.0.0.1:4000/Images/Pasted%20image%2020240704103804.png \
+            >/dev/null
+          curl --fail --silent --show-error --dump-header "$RUNNER_TEMP/headers" \
+            --output /dev/null http://127.0.0.1:4000/20-Cryptography.html
+          grep -Fiq "Content-Security-Policy:" "$RUNNER_TEMP/headers"
+          grep -Fiq "X-Content-Type-Options: nosniff" "$RUNNER_TEMP/headers"
+          test "$(curl --silent --output /dev/null --write-out '%{http_code}' \
+            http://127.0.0.1:4000/not-a-page)" = "404"
+          cleanup
+          trap - EXIT
+
+      - name: Confirm the build did not change tracked files
+        run: |
+          set -euo pipefail
+          git diff --check
+          git diff --exit-code
+          test -z "$(git status --porcelain --untracked-files=all)"
+
       - name: Archive Pages artifact
-        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         shell: bash
         env:
           INPUT_PATH: ./_book
@@ -52,8 +137,9 @@ jobs:
             --exclude=.git \
             --exclude=.github \
             .
+
       - name: Upload Pages artifact
-        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: github-pages
@@ -62,7 +148,7 @@ jobs:
           if-no-files-found: error
 
   deploy:
-    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     needs: build
     runs-on: ubuntu-latest
     permissions:

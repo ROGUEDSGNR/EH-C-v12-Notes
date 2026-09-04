@@ -6,7 +6,7 @@ Welcome to the **Ethical Hacking Certification (EHC) v12 Study Notes**! This com
 
 ## 📚 About This Guide
 
-This GitBook contains comprehensive study materials for the Ethical Hacking Certification v12, organized into structured modules covering everything from essential concepts to advanced cryptography. Each module includes:
+This dark-first study guide contains comprehensive materials for the Ethical Hacking Certification v12, organized into structured modules covering everything from essential concepts to advanced cryptography. Each module includes:
 
 - **Detailed theoretical notes** covering key concepts and techniques
 - **Practical lab exercises** with step-by-step instructions
@@ -56,16 +56,17 @@ To get the most out of these notes:
 4. Review countermeasures to understand defensive strategies
 5. Use the table of contents to navigate between topics
 
-## 💡 How to Use This GitBook
+## 💡 How to Use This Guide
 
 - Use the **sidebar navigation** to browse through modules
 - Each module contains theory, practical examples, and lab exercises
-- **Search functionality** helps you find specific topics quickly
+- Use your browser's **Find** command to search the current page
+- The CyBrief/0x5244 interface is dark by default and works without client-side JavaScript
 - Bookmark important pages for quick reference during study sessions
 
 ## 🛠️ Alternative Usage
 
-You can also download this repository and add it to your **Obsidian Vault** for offline access and personal note-taking.
+You can also add the Markdown files to an **Obsidian Vault** for offline access and personal note-taking. Maintainers can build and privately preview the static mdBook site in GitHub Codespaces; see [MDBOOK_SETUP.md](https://github.com/0x5244/EH-C-v12-Notes/blob/main/MDBOOK_SETUP.md).
 
 ## 📝 License & Disclaimer
 

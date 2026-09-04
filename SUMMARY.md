@@ -1,8 +1,8 @@
-# Table of Contents
+# Summary
 
 * [Introduction](README.md)
 
-## Core Modules
+# Core Modules
 
 * [Module 00: Essential Concepts](00-Essential_Concepts.md)
 * [Module 01: Introduction to Ethical Hacking](01-Introduction-to-Ethical-Hacking.md)
@@ -31,7 +31,7 @@
 * [Module 19: Cloud Computing](19-Cloud_Computing.md)
 * [Module 20: Cryptography](20-Cryptography.md)
 
-## Practical Labs
+# Practical Labs
 
 * [Lab 02: Footprinting and Reconnaissance](Labs/02-Footprinting_and_Reconnaissance-Labs.md)
 * [Lab 03: Scanning Networks](Labs/03-Scanning_Networks-Labs.md)
@@ -53,7 +53,7 @@
 * [Lab 19: Cloud Computing](Labs/19-Cloud_Computing-Labs.md)
 * [Lab 20: Cryptography](Labs/20-Cryptography-Labs.md)
 
-## Resources & References
+# Resources & References
 
 * [Glossary](Resources/Glossary.md)
 * [Nmap Ultimate Cheatsheet](Resources/Nmap_Ultimate_Cheatsheet.md)

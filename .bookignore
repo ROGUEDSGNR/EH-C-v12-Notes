@@ -1,6 +1,0 @@
-# Repository-only documentation
-GITBOOK_SETUP.md
-SECURITY.md
-
-# CI-only validation
-scripts/

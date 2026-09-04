@@ -105,7 +105,7 @@ dig @ns1.certifiedhacker.com certifiedhacker.com AXFR
 # Services and Ports to Enumerate
 
 ### Ports and Protocols
-###### <span style="background:#adff23;font-weight:bold"> Detailed descriptions follow below the table </span> -- expand items to see more
+###### <mark>Detailed descriptions follow below the table</mark> -- expand items to see more
 
 | **Port**   | **Protocol**      | **Service**                      | **Enumeration Purpose**                                                                 |
 |------------|-------------------|-----------------------------------|-----------------------------------------------------------------------------------------|
@@ -237,7 +237,7 @@ BGP is widely used by Internet service providers (ISPs) to maintain routing tabl
      nbtstat -c                      # Display NetBIOS name cache
      ```
 
-><span style="background:#adff23;font-weight:bold"> Attackers use NetBIOS enumeration to obtain: </span>
+><mark>Attackers use NetBIOS enumeration to obtain:</mark>
 >- The list of computers that belong to a domain
 >- The list of shares on the individual hosts in the network
 >- Policies and passwords

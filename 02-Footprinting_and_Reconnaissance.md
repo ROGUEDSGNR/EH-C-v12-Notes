@@ -213,7 +213,7 @@ python3 photon.py -u example.com -o output
 - [Central Ops](https://centralops.net/co/): Free online network scanner for domains and IP addresses, DNS records, traceroute, nslookup, whois searches.
 - [CeWL](https://github.com/digininja/CeWL)
 - [Whois](https://whois.domaintools.com/)
-- [IP2Location](https://www.ip2location.com )
+- [IP2Location](https://www.ip2location.com)
 
 ---
 ## **DNS Footprinting**

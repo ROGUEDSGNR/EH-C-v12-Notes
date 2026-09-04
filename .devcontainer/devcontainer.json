@@ -1,15 +1,18 @@
 {
   "name": "EH-C v12 Notes",
-  "image": "mcr.microsoft.com/devcontainers/javascript-node:24-bookworm",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": "."
+  },
   "hostRequirements": {
     "cpus": 2
   },
   "remoteUser": "node",
-  "postCreateCommand": "npm ci --ignore-scripts",
+  "postCreateCommand": "node --version | grep -Eq '^v24[.]' && mdbook --version",
   "forwardPorts": [4000],
   "portsAttributes": {
     "4000": {
-      "label": "HonKit preview",
+      "label": "Private mdBook preview",
       "onAutoForward": "notify",
       "visibility": "private"
     }
