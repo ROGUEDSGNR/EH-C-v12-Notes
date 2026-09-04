@@ -298,8 +298,11 @@ async function walk(root, relative = "") {
 
 function htmlIds(html, page) {
   const ids = new Set();
-  for (const match of html.matchAll(/\sid\s*=\s*(?:"([^"]+)"|'([^']+)')/giu)) {
-    const id = entities(match[1] ?? match[2]);
+  for (const match of html.matchAll(/<[a-z][^<>]*>/giu)) {
+    const attrs = attributes(match[0]);
+    if (!attrs.has("id")) continue;
+    const id = attrs.get("id");
+    if (!id) fail("Empty generated id in " + page);
     if (ids.has(id)) fail("Duplicate generated id in " + page + ": " + id);
     ids.add(id);
   }
