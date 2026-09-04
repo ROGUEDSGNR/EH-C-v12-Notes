@@ -59,6 +59,8 @@ index e0415cb40bfa50306fca15480295cd3bce974784..7523f134995555aebf46d4f23a102bcd
          self.static_files.push(StaticFile::Builtin {
              filename: filename.to_owned(),
              data: data.to_owned(),
+         });
+     }
 @@ -308,11 +311,9 @@
 -        // custom JS winds up referencing book.js
 +        // Custom JS retains the name of the omitted empty built-in.

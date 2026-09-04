@@ -4,7 +4,7 @@ COPY mdbook-no-client-js.patch /tmp/mdbook-no-client-js.patch
 COPY verify-binary.rs /tmp/verify-binary.rs
 
 RUN set -eux; \
-    test "$(sha256sum /tmp/mdbook-no-client-js.patch | cut -d' ' -f1)" = "a1693479d4bccf30a7e494923a17dd40a544a79846cc506a1622533c2060e947"; \
+    test "$(sha256sum /tmp/mdbook-no-client-js.patch | cut -d' ' -f1)" = "7494b689b49b436857635dceb77a5956b26d72ec31d06e67e4f98ec6ebf3c04b"; \
     git init /tmp/mdbook; \
     cd /tmp/mdbook; \
     git remote add origin https://github.com/rust-lang/mdBook.git; \

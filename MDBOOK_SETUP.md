@@ -40,7 +40,7 @@ The final validation accepts exactly 52 HTML pages, `css/general.css`, nine refe
 The container builds mdBook from upstream commit `a57975d499a660fd11da05a9010e93fe245525ba` with Rust 1.88, `--locked`, and `--no-default-features`. It verifies:
 
 - Cargo.lock SHA-256 `603ffab1532a5bc934214693623e1fdb27ae5b40e016f88a3b4ce384b571694e` and Git blob `ef047c8faab35b8fed2203aaed73e71482f96b7b`;
-- the local JS-removal patch SHA-256 `a1693479d4bccf30a7e494923a17dd40a544a79846cc506a1622533c2060e947`;
+- the local JS-removal patch SHA-256 `7494b689b49b436857635dceb77a5956b26d72ec31d06e67e4f98ec6ebf3c04b`;
 - upstream and patched Rust source blob IDs;
 - absence of all 11 upstream browser/template blobs from the compiled binary; and
 - the generated artifact's no-script, no-JavaScript allowlist.
