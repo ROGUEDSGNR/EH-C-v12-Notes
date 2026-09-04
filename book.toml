@@ -2,7 +2,6 @@
 authors = ["0x5244"]
 description = "Ethical Hacking Certification v12 study notes"
 language = "en"
-multilingual = false
 src = "_mdbook-src"
 title = "EHC v12 Study Notes"
 
