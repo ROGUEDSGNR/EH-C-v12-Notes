@@ -69,24 +69,29 @@ async function absent(relative) {
   fail("Removed dependency/configuration file is still present: " + relative);
 }
 
-function prose(markdown) {
+function prose(markdown, page) {
   const kept = [];
-  let fence = "";
+  let fence = null;
   for (const line of markdown.split("\n")) {
-    const match = line.match(/^\s*((?:\x60{3,}|~{3,}))/u);
-    if (match && !fence) {
-      fence = match[1][0];
-      kept.push("");
-      continue;
-    }
-    if (match && fence && match[1][0] === fence) {
-      fence = "";
-      kept.push("");
-      continue;
+    if (!fence) {
+      const open = line.match(/^\s*(\x60{3,}|~{3,})/u);
+      if (open) {
+        fence = { character: open[1][0], length: open[1].length };
+        kept.push("");
+        continue;
+      }
+    } else {
+      const close = line.match(/^\s*(\x60{3,}|~{3,})\s*$/u);
+      if (close && close[1][0] === fence.character &&
+          close[1].length >= fence.length) {
+        fence = null;
+        kept.push("");
+        continue;
+      }
     }
     kept.push(fence ? "" : line);
   }
-  if (fence) fail("Unclosed Markdown code fence");
+  if (fence) fail("Unclosed Markdown code fence in " + page);
   return kept.join("\n")
     .replace(/<!--[\s\S]*?-->/gu, "")
     .replace(/(\x60+)[^\n]*?\1/gu, "");
@@ -172,7 +177,7 @@ function checkCss(css, label) {
 }
 
 function markdownTargets(markdown, page) {
-  const clean = prose(markdown);
+  const clean = prose(markdown, page);
   if (/\{\{\s*#/u.test(clean))
     fail("mdBook directive is forbidden in " + page);
   if (/!\[\[[^\]]+\]\]/u.test(clean))
