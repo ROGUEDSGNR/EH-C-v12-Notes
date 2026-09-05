@@ -41,7 +41,7 @@ RUN set -eux; \
     ! grep -aFq "clipboard.js v2.0.4" target/release/mdbook; \
     ! grep -aFq "window.location.replace(redirectUrl)" target/release/mdbook
 
-FROM mcr.microsoft.com/devcontainers/javascript-node:5-24-bookworm@sha256:fe599ef9d866c4adb1fbb1f8a37af2892a090e5fd0d93feb8471e9de15a5f14d
+FROM mcr.microsoft.com/devcontainers/javascript-node:5-26-bookworm@sha256:3171cac7c483b2dcbbab44b49e6cbc2d52e2b2b7faf81177c2bcb3648b957cf3
 
 COPY --from=mdbook-builder --chmod=0755 /tmp/mdbook/target/release/mdbook /usr/local/bin/mdbook
 COPY --from=mdbook-builder --chmod=0644 /tmp/mdbook/Cargo.lock /usr/local/share/mdbook/Cargo.lock
