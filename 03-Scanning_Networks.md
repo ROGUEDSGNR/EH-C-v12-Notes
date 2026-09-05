@@ -39,40 +39,23 @@ Info Obtained in Network Scanning
 # Table of Contents
 
 1. [Types of Scanning](#types-of-scanning)
-	1. [Port Scanning](#port-scanning)
-	2. [Network Scanning](#network-scanning)
-	3. [Vulnerability Scanning](#vulnerability-scanning)
 2. [TCP Communication Flags](#tcp-communication-flags)
 3. [TCP/IP Communication](#tcpip-communication)
 4. [Phase 1 Host Discovery](#phase-1-host-discovery)
 	1. [Host Discovery Scanning](#host-discovery-scanning)
-	2. [ARP Ping Scan](#arp-ping-scan)
-	3. [UDP Ping Scan](#udp-ping-scan)
-	4. [ICMP Ping Scan](#icmp-ping-scan)
-	5. [TCP Ping Scan](#tcp-ping-scan)
-	6. [IP Protocol Scan](#ip-protocol-scan)
 5. [Phase 2 Port/Service Scanning Techniques](#phase-2-portservice-scanning-techniques)
 	1. [TCP Scanning](#tcp-scanning)
 	2. [UDP Scanning](#udp-scanning)
 	3. [SCTP Scanning](#sctp-scanning)
 	4. [SSDP Scanning](#ssdp-scanning)
 	5. [IPv6 Scanning](#ipv6-scanning)
-6. [Banner Grabbing/OS Discovery](#banner-grabbingos-discovery)
+6. [Banner Grabbing/OS Discovery](#banner-grabbingos-discovery-using-nmap-)
 	1. [Operating System Time To Live and TCP Window Size](#operating-system-time-to-live-and-tcp-window-size)
-7. [Scanning Beyond IDS and Firewall](#scanning-beyond-ids-and-firewall)
-	1. [Packet Fragmentation](#packet-fragmentation)
-	2. [Source Port Manipulation](#source-port-manipulation)
-	3. [Using Maximum Transmission Unit (MTU)](#using-maximum-transmission-unit-mtu)
-	4. [IP Address Decoy](#ip-address-decoy)
-	5. [MAC Address Spoofing](#mac-address-spoofing)
-	6. [Randomizing Host Order](#randomizing-host-order)
-	7. [Sending Bad Checksums](#sending-bad-checksums)
-	8. [Using Proxy Servers](#using-proxy-servers)
-	9. [Anonymizers](#anonymizers)
+7. [Scanning Beyond IDS and Firewall](#scanning-beyond-ids-and-firewall-part-1)
 8. [Tools](#tools)
-	1. [Nmap](#nmap)
+	1. [Nmap](#nmap--hping3--metasploit)
 	2. [Hping3](#hping3)
-	3. [Metasploit](#metasploit)
+	3. [Metasploit](#scan-a-target-network-using-metasploit)
 9. [Summary](#summary)
 
 ---
@@ -155,7 +138,7 @@ Here are some common host discovery techniques:
 | TCP SYN Ping Scan           | `nmap -sn -PS <Target IP Address>`       | Empty TCP SYN request                                                | ACK response - Host is active <br>No response - Host is inactive                                                  | - Useful to determine if the host is active without creating any connection <br>- Leaves no traces for detection                                        |
 | TCP ACK Ping Scan           | `nmap -sn -PA <Target IP Address>`       | Empty TCP ACK request                                                | RST response - Host is active <br>No response - Host is inactive                                                  | - Maximizes the chances of bypassing the firewall                                                                                                       |
 | IP Protocol Ping Scan       | `nmap -sn -PO <Target IP Address>`       | IP ping requests using different IP protocols (ICMP, IGMP, TCP, UDP) | Any response - Host is active <br>No response - Host is inactive                                                  | - Sends different packets using different IP protocols in the hope of receiving a response indicating that a host is online                             |
-> [!NOTE]
+> **Note:**
 > that <font color="#adff23">we're not scanning for ports and services yet</font>, thus the use of Nmap option `-sn`. 
 > 
 > Ports/Services/etc will be scanned once we stipulate the *live* hosts we want to attack (in the next phase).
@@ -170,7 +153,7 @@ Here are some common host discovery techniques:
 
 Port scanning techniques can be categorized based on the type of protocol used for communication within the network. Here are the different categories and methods:
 
-#### <span style="background:#d4b106"> TCP Scanning </span>
+#### <mark>TCP Scanning</mark>
 
 1. **Open TCP Scanning Methods**
    - **TCP Connect/Full-open Scan**
@@ -188,29 +171,29 @@ Port scanning techniques can be categorized based on the type of protocol used f
 
 3. **Third Party and Spoofed TCP Scanning Methods**
    - **IDLE/IP ID Header Scan**
-#### <span style="background:#d4b106"> UDP Scanning </span>
+#### <mark>UDP Scanning</mark>
 
 - **UDP Scanning**
 
-#### <span style="background:#d4b106"> SCTP Scanning </span>
+#### <mark>SCTP Scanning</mark>
 
 1. **SCTP INIT Scanning**
 2. **SCTP COOKIE/ECHO Scanning**
 
-#### <span style="background:#d4b106"> SSDP Scanning </span>
+#### <mark>SSDP Scanning</mark>
 
 - **SSDP and List Scanning**
 
-#### <span style="background:#d4b106"> IPv6 Scanning </span>
+#### <mark>IPv6 Scanning</mark>
 
 - **IPv6 Scanning**
 
 > [!Resources]
-> # [Reserved Ports Table](obsidian://open?vault=SkyNetDSKT&file=CEH%20v12%20Notes%202024%2F03-Scanning_Networks)
+> # [Reserved Ports Table](Resources/Reserved_Ports_Table.md)
 
 ### Scanning Techniques Table
 
-> [!NOTE]
+> **Note:**
 > The<font color="#adff23"> ↪ </font>symbol indicates EH|C scope. Nothing more.
 
 
@@ -268,7 +251,7 @@ Identify the target system’s OS with Time-to-Live (TTL):
 ---
 
 # **Scanning Beyond IDS and Firewall (PART 1)**
-[PART 2 | Deep Dive into Evasion](#) - not getting caught plays a big part into attack methodologies
+[PART 2 | Deep Dive into Evasion](12-Evading_IDS_Firewalls_and_Honeypots.md) - not getting caught plays a big part into attack methodologies
 
 > An Intrusion Detection System (IDS) and firewall are security mechanisms designed to prevent unauthorized access to a network. However, both IDSs and firewalls have limitations. While they aim to block malicious traffic from entering the network, certain techniques can be used to send intended packets to the target and evade these defenses.
 
@@ -433,7 +416,7 @@ nmap -sX -v <Target IP Address>
 > > In this command, -I specifies an immediate mode and -v specifies a verbose mode.
 
 > [!Resources]
-> # [Nmap Ultimate Cheatsheet](obsidian://open?vault=SkyNetDSKT&file=CEH%20v12%20Notes%202024%2FResources%2FNmap_Ultimate_Cheatsheet)
+> # [Nmap Ultimate Cheatsheet](Resources/Nmap_Ultimate_Cheatsheet.md)
 
 
 Create Custom UDP and TCP Packets using Hping3 to Scan beyond the IDS/Firewall
@@ -520,7 +503,7 @@ Finally, a review of powerful scanning tools, including Nmap, Hping3, and Metasp
 
 ---
 
-##### [Network Scanning Countermeasures ↗](../3.1-Network_Scanning%20Countermeasures)
+##### [Network Scanning Countermeasures ↗](03.1-Network_Scanning_Countermeasures.md)
 
 
 

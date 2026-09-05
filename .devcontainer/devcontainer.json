@@ -1,0 +1,28 @@
+{
+  "name": "EH-C v12 Notes",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": "."
+  },
+  "hostRequirements": {
+    "cpus": 2
+  },
+  "remoteUser": "node",
+  "postCreateCommand": "node --version | grep -Eq '^v24[.]' && mdbook --version",
+  "forwardPorts": [4000],
+  "portsAttributes": {
+    "4000": {
+      "label": "Private mdBook preview",
+      "onAutoForward": "notify",
+      "visibility": "private"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "markdown.validate.enabled": true,
+        "files.trimTrailingWhitespace": true
+      }
+    }
+  }
+}

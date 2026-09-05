@@ -1,0 +1,30 @@
+[book]
+authors = ["0x5244"]
+description = "Ethical Hacking Certification v12 study notes"
+language = "en"
+src = "_mdbook-src"
+title = "EHC v12 Study Notes"
+
+[build]
+build-dir = "_book"
+create-missing = false
+use-default-preprocessors = false
+
+[output.html]
+theme = "theme"
+git-repository-url = "https://github.com/0x5244/EH-C-v12-Notes"
+hash-files = false
+input-404 = ""
+mathjax-support = false
+no-section-label = true
+smart-punctuation = true
+
+[output.html.playground]
+editable = false
+copyable = false
+copy-js = false
+line-numbers = false
+runnable = false
+
+[output.html.print]
+enable = false

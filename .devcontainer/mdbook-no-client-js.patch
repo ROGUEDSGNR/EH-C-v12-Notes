@@ -1,0 +1,89 @@
+diff --git a/crates/mdbook-html/src/theme/mod.rs b/crates/mdbook-html/src/theme/mod.rs
+index c55a30eff360db1ee2e49cff647ecf2f2313a2ce..8ffeecfcf5f0cc5f537c35e6eaf17adaf0fe99b8 100644
+--- a/crates/mdbook-html/src/theme/mod.rs
++++ b/crates/mdbook-html/src/theme/mod.rs
+@@ -11,11 +11,11 @@
+ #[cfg(feature = "search")]
+ pub(crate) mod searcher;
+ 
++static INDEX: &[u8] = b"";
+-static INDEX: &[u8] = include_bytes!("../../front-end/templates/index.hbs");
+ static HEAD: &[u8] = include_bytes!("../../front-end/templates/head.hbs");
++static REDIRECT: &[u8] = b"";
+-static REDIRECT: &[u8] = include_bytes!("../../front-end/templates/redirect.hbs");
+ static HEADER: &[u8] = include_bytes!("../../front-end/templates/header.hbs");
++static TOC_JS: &[u8] = b"";
+-static TOC_JS: &[u8] = include_bytes!("../../front-end/templates/toc.js.hbs");
+ static TOC_HTML: &[u8] = include_bytes!("../../front-end/templates/toc.html.hbs");
+ static CHROME_CSS: &[u8] = include_bytes!("../../front-end/css/chrome.css");
+ static GENERAL_CSS: &[u8] = include_bytes!("../../front-end/css/general.css");
+@@ -23,12 +23,12 @@
+ static VARIABLES_CSS: &[u8] = include_bytes!("../../front-end/css/variables.css");
+ static FAVICON_PNG: &[u8] = include_bytes!("../../front-end/images/favicon.png");
+ static FAVICON_SVG: &[u8] = include_bytes!("../../front-end/images/favicon.svg");
++static JS: &[u8] = b"";
++static HIGHLIGHT_JS: &[u8] = b"";
+-static JS: &[u8] = include_bytes!("../../front-end/js/book.js");
+-static HIGHLIGHT_JS: &[u8] = include_bytes!("../../front-end/js/highlight.js");
+ static TOMORROW_NIGHT_CSS: &[u8] = include_bytes!("../../front-end/css/tomorrow-night.css");
+ static HIGHLIGHT_CSS: &[u8] = include_bytes!("../../front-end/css/highlight.css");
+ static AYU_HIGHLIGHT_CSS: &[u8] = include_bytes!("../../front-end/css/ayu-highlight.css");
++static CLIPBOARD_JS: &[u8] = b"";
+-static CLIPBOARD_JS: &[u8] = include_bytes!("../../front-end/js/clipboard.min.js");
+ 
+ /// The `Theme` struct should be used instead of the static variables because
+ /// the `new()` method will look if the user has a theme directory in their
+diff --git a/crates/mdbook-html/src/theme/playground_editor.rs b/crates/mdbook-html/src/theme/playground_editor.rs
+index 2fd385acf041032a0fcb541c75666719810289ed..f526db83b73e5501e4c07ccad0fc55078177b729 100644
+--- a/crates/mdbook-html/src/theme/playground_editor.rs
++++ b/crates/mdbook-html/src/theme/playground_editor.rs
+@@ -1,10 +1,7 @@
+ //! Theme dependencies for the playground editor.
+ 
++pub(crate) static JS: &[u8] = b"";
++pub(crate) static ACE_JS: &[u8] = b"";
++pub(crate) static MODE_RUST_JS: &[u8] = b"";
++pub(crate) static THEME_DAWN_JS: &[u8] = b"";
++pub(crate) static THEME_TOMORROW_NIGHT_JS: &[u8] = b"";
+-pub(crate) static JS: &[u8] = include_bytes!("../../front-end/playground_editor/editor.js");
+-pub(crate) static ACE_JS: &[u8] = include_bytes!("../../front-end/playground_editor/ace.js");
+-pub(crate) static MODE_RUST_JS: &[u8] =
+-    include_bytes!("../../front-end/playground_editor/mode-rust.js");
+-pub(crate) static THEME_DAWN_JS: &[u8] =
+-    include_bytes!("../../front-end/playground_editor/theme-dawn.js");
+-pub(crate) static THEME_TOMORROW_NIGHT_JS: &[u8] =
+-    include_bytes!("../../front-end/playground_editor/theme-tomorrow_night.js");
+diff --git a/crates/mdbook-html/src/html_handlebars/static_files.rs b/crates/mdbook-html/src/html_handlebars/static_files.rs
+index e0415cb40bfa50306fca15480295cd3bce974784..7523f134995555aebf46d4f23a102bcd55189c1a 100644
+--- a/crates/mdbook-html/src/html_handlebars/static_files.rs
++++ b/crates/mdbook-html/src/html_handlebars/static_files.rs
+@@ -127,6 +127,9 @@
+     }
+ 
+     pub(super) fn add_builtin(&mut self, filename: &str, data: &[u8]) {
++        if data.is_empty() {
++            return;
++        }
+         self.static_files.push(StaticFile::Builtin {
+             filename: filename.to_owned(),
+             data: data.to_owned(),
+@@ -305,16 +308,14 @@
+         let mut static_files = StaticFiles::new(&theme, &html_config, temp_dir.path()).unwrap();
+         static_files.hash_files().unwrap();
+         static_files.write_files(temp_dir.path()).unwrap();
++        // Custom JS retains the name of the omitted empty built-in.
+-        // custom JS winds up referencing book.js
+         let reference_js_content = fs::read_to_string(
+             temp_dir
+                 .path()
+                 .join("static-files-test-case-reference-635c9cdc.js"),
+         )
+         .unwrap();
++        assert_eq!("book.js", reference_js_content);
++        assert!(!temp_dir.path().join("book.js").exists());
+-        assert_eq!("book-e3b0c442.js", reference_js_content);
+-        // book.js winds up empty
+-        let book_js_content = fs::read_to_string(temp_dir.path().join("book-e3b0c442.js")).unwrap();
+-        assert_eq!("", book_js_content);
+     }
+ }

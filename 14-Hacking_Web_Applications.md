@@ -17,7 +17,7 @@
 ---
 
 ## Table of Contents
-1. [Web Application Concepts](# Web Application Concepts)
+1. [Web Application Concepts](#web-application-concepts)
 	1. [Web Application Architecture](#web-application-architecture)
 	2. [Presentation Layer](#presentation-layer)
 	3. [Business Logic Layer](#business-logic-layer)

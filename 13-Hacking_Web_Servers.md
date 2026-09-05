@@ -648,7 +648,7 @@ SAINT Security Suite (https://www.carson-saint.com)
 Sophos Intercept X for Server (https://www.sophos.com)
 UpGuard (https://www.upguard.com)
 
-##### [Hacking Web Servers Countermeasures ↗](../13.1-Hacking_Web_Servers_Countermeasures)
+##### [Hacking Web Servers Countermeasures ↗](13.1-Hacking_Web_Servers_Countermeasures.md)
 
 ---
 

@@ -1,20 +1,19 @@
-# Table of Contents
+# Summary
 
 * [Introduction](README.md)
 
-## Core Modules
+# Core Modules
 
 * [Module 00: Essential Concepts](00-Essential_Concepts.md)
 * [Module 01: Introduction to Ethical Hacking](01-Introduction-to-Ethical-Hacking.md)
 * [Module 02: Footprinting and Reconnaissance](02-Footprinting_and_Reconnaissance.md)
   * [Footprinting Countermeasures](02.1-Footprinting_Countermeasures.md)
 * [Module 03: Scanning Networks](03-Scanning_Networks.md)
-  * [Network Scanning Countermeasures](03.1-Network_Scanning%20Countermeasures.md)
+  * [Network Scanning Countermeasures](03.1-Network_Scanning_Countermeasures.md)
 * [Module 04: Enumeration](04-Enumeration.md)
   * [Enumeration Countermeasures](04.1-Enumeration_Countermeasures.md)
 * [Module 05: Vulnerability Analysis](05-Vulnerability_Analysis.md)
-  * [Vulnerability Management Lifecycle and Reporting](05.1-Vulnerability_Management%20Lifecycle_and_Reporting.md)
-  * [Vulnerability Analysis Countermeasures](05.1-Vulnerability_Analysis_Countermeasures.md)
+  * [Vulnerability Management Lifecycle and Reporting](05.1-Vulnerability_Management_Lifecycle_and_Reporting.md)
 * [Module 06: System Hacking](06-System_Hacking.md)
 * [Module 07: Malware Threats](07-Malware_Threats.md)
 * [Module 08: Sniffing](08-Sniffing.md)
@@ -32,7 +31,7 @@
 * [Module 19: Cloud Computing](19-Cloud_Computing.md)
 * [Module 20: Cryptography](20-Cryptography.md)
 
-## Practical Labs
+# Practical Labs
 
 * [Lab 02: Footprinting and Reconnaissance](Labs/02-Footprinting_and_Reconnaissance-Labs.md)
 * [Lab 03: Scanning Networks](Labs/03-Scanning_Networks-Labs.md)
@@ -54,11 +53,11 @@
 * [Lab 19: Cloud Computing](Labs/19-Cloud_Computing-Labs.md)
 * [Lab 20: Cryptography](Labs/20-Cryptography-Labs.md)
 
-## Resources & References
+# Resources & References
 
 * [Glossary](Resources/Glossary.md)
 * [Nmap Ultimate Cheatsheet](Resources/Nmap_Ultimate_Cheatsheet.md)
 * [Reserved Ports Table](Resources/Reserved_Ports_Table.md)
-* [Footprinting Checklist](Resources/Footprinting%20Checklist.md)
+* [Footprinting Checklist](Resources/Footprinting_Checklist.md)
 * [Common Ports Used by Trojans](Resources/07.1-Common_Ports_used_by_Trojans.md)
 * [Original Table of Contents](EHC_v12_Table_of_Contents.md)
